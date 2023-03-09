@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="httpLog">
+      <h2 data-cy="httpLogDetailsHeading"><span>Http Log</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ httpLog.id }}</span>
+        </dd>
+        <dt><span>Request Timestamp</span></dt>
+        <dd>
+          <span>{{ httpLog.requestTimestamp | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Http Method</span></dt>
+        <dd>
+          <span>{{ httpLog.httpMethod }}</span>
+        </dd>
+        <dt><span>Request Url</span></dt>
+        <dd>
+          <span>{{ httpLog.requestUrl }}</span>
+        </dd>
+        <dt><span>Http Status Code</span></dt>
+        <dd>
+          <span>{{ httpLog.httpStatusCode }}</span>
+        </dd>
+        <dt><span>Remote IP Address</span></dt>
+        <dd>
+          <span>{{ httpLog.remoteIPAddress }}</span>
+        </dd>
+        <dt><span>Duration</span></dt>
+        <dd>
+          <span>{{ httpLog.duration }}</span>
+        </dd>
+        <dt><span>Request Headers</span></dt>
+        <dd>
+          <span>{{ httpLog.requestHeaders }}</span>
+        </dd>
+        <dt><span>Response Headers</span></dt>
+        <dd>
+          <span>{{ httpLog.responseHeaders }}</span>
+        </dd>
+        <dt><span>Request URL Parameters</span></dt>
+        <dd>
+          <span>{{ httpLog.requestURLParameters }}</span>
+        </dd>
+        <dt><span>Request Body</span></dt>
+        <dd>
+          <span>{{ httpLog.requestBody }}</span>
+        </dd>
+        <dt><span>Request Cookies</span></dt>
+        <dd>
+          <span>{{ httpLog.requestCookies }}</span>
+        </dd>
+        <dt><span>Response Cookies</span></dt>
+        <dd>
+          <span>{{ httpLog.responseCookies }}</span>
+        </dd>
+        <dt><span>Application</span></dt>
+        <dd>
+          <div *ngIf="httpLog.application">
+            <a [routerLink]="['/application', httpLog.application.id, 'view']">{{ httpLog.application.code }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/http-log', httpLog.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

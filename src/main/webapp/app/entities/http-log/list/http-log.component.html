@@ -1,0 +1,196 @@
+<div>
+  <h2 id="page-heading" data-cy="HttpLogHeading">
+    <span>Http Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-http-log"
+        [routerLink]="['/http-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Http Log </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="httpLogs?.length === 0">
+    <span>No Http Logs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="httpLogs && httpLogs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestTimestamp">
+            <div class="d-flex">
+              <span>Request Timestamp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="httpMethod">
+            <div class="d-flex">
+              <span>Http Method</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestUrl">
+            <div class="d-flex">
+              <span>Request Url</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="httpStatusCode">
+            <div class="d-flex">
+              <span>Http Status Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="remoteIPAddress">
+            <div class="d-flex">
+              <span>Remote IP Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="duration">
+            <div class="d-flex">
+              <span>Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestHeaders">
+            <div class="d-flex">
+              <span>Request Headers</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="responseHeaders">
+            <div class="d-flex">
+              <span>Response Headers</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestURLParameters">
+            <div class="d-flex">
+              <span>Request URL Parameters</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestBody">
+            <div class="d-flex">
+              <span>Request Body</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requestCookies">
+            <div class="d-flex">
+              <span>Request Cookies</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="responseCookies">
+            <div class="d-flex">
+              <span>Response Cookies</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="application.code">
+            <div class="d-flex">
+              <span>Application</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let httpLog of httpLogs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/http-log', httpLog.id, 'view']">{{ httpLog.id }}</a>
+          </td>
+          <td>{{ httpLog.requestTimestamp | formatMediumDatetime }}</td>
+          <td>{{ httpLog.httpMethod }}</td>
+          <td>{{ httpLog.requestUrl }}</td>
+          <td>{{ httpLog.httpStatusCode }}</td>
+          <td>{{ httpLog.remoteIPAddress }}</td>
+          <td>{{ httpLog.duration }}</td>
+          <td>{{ httpLog.requestHeaders }}</td>
+          <td>{{ httpLog.responseHeaders }}</td>
+          <td>{{ httpLog.requestURLParameters }}</td>
+          <td>{{ httpLog.requestBody }}</td>
+          <td>{{ httpLog.requestCookies }}</td>
+          <td>{{ httpLog.responseCookies }}</td>
+          <td>
+            <div *ngIf="httpLog.application">
+              <a [routerLink]="['/application', httpLog.application.id, 'view']">{{ httpLog.application.code }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/http-log', httpLog.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/http-log', httpLog.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(httpLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="httpLogs && httpLogs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

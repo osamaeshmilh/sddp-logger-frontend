@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="token">
+      <h2 data-cy="tokenDetailsHeading"><span>Token</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ token.id }}</span>
+        </dd>
+        <dt><span>Access Token</span></dt>
+        <dd>
+          <span>{{ token.accessToken }}</span>
+        </dd>
+        <dt><span>Refresh Token</span></dt>
+        <dd>
+          <span>{{ token.refreshToken }}</span>
+        </dd>
+        <dt><span>Expiry Date</span></dt>
+        <dd>
+          <span>{{ token.expiryDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Is Active</span></dt>
+        <dd>
+          <span>{{ token.isActive }}</span>
+        </dd>
+        <dt><span>Application</span></dt>
+        <dd>
+          <div *ngIf="token.application">
+            <a [routerLink]="['/application', token.application.id, 'view']">{{ token.application.code }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/token', token.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

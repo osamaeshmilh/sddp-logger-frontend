@@ -1,0 +1,247 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-http-log-heading" data-cy="HttpLogCreateUpdateHeading">Create or edit a Http Log</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestTimestamp">Request Timestamp</label>
+          <div class="d-flex">
+            <input
+              id="field_requestTimestamp"
+              data-cy="requestTimestamp"
+              type="datetime-local"
+              class="form-control"
+              name="requestTimestamp"
+              formControlName="requestTimestamp"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('requestTimestamp')!.invalid &&
+              (editForm.get('requestTimestamp')!.dirty || editForm.get('requestTimestamp')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('requestTimestamp')?.errors?.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('requestTimestamp')?.errors?.datetimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_httpMethod">Http Method</label>
+          <select class="form-control" name="httpMethod" formControlName="httpMethod" id="field_httpMethod" data-cy="httpMethod">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let httpMethod of httpMethodValues" [value]="httpMethod">httpMethod</option>
+          </select>
+          <div *ngIf="editForm.get('httpMethod')!.invalid && (editForm.get('httpMethod')!.dirty || editForm.get('httpMethod')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('httpMethod')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestUrl">Request Url</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestUrl"
+            id="field_requestUrl"
+            data-cy="requestUrl"
+            formControlName="requestUrl"
+          />
+          <div *ngIf="editForm.get('requestUrl')!.invalid && (editForm.get('requestUrl')!.dirty || editForm.get('requestUrl')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('requestUrl')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_httpStatusCode">Http Status Code</label>
+          <select
+            class="form-control"
+            name="httpStatusCode"
+            formControlName="httpStatusCode"
+            id="field_httpStatusCode"
+            data-cy="httpStatusCode"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let httpStatusCode of httpStatusCodeValues" [value]="httpStatusCode">httpStatusCode</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('httpStatusCode')!.invalid && (editForm.get('httpStatusCode')!.dirty || editForm.get('httpStatusCode')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('httpStatusCode')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_remoteIPAddress">Remote IP Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="remoteIPAddress"
+            id="field_remoteIPAddress"
+            data-cy="remoteIPAddress"
+            formControlName="remoteIPAddress"
+          />
+          <div
+            *ngIf="
+              editForm.get('remoteIPAddress')!.invalid &&
+              (editForm.get('remoteIPAddress')!.dirty || editForm.get('remoteIPAddress')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('remoteIPAddress')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_duration">Duration</label>
+          <input type="number" class="form-control" name="duration" id="field_duration" data-cy="duration" formControlName="duration" />
+          <div *ngIf="editForm.get('duration')!.invalid && (editForm.get('duration')!.dirty || editForm.get('duration')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('duration')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('duration')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestHeaders">Request Headers</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestHeaders"
+            id="field_requestHeaders"
+            data-cy="requestHeaders"
+            formControlName="requestHeaders"
+          />
+          <div
+            *ngIf="
+              editForm.get('requestHeaders')!.invalid && (editForm.get('requestHeaders')!.dirty || editForm.get('requestHeaders')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('requestHeaders')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_responseHeaders">Response Headers</label>
+          <input
+            type="text"
+            class="form-control"
+            name="responseHeaders"
+            id="field_responseHeaders"
+            data-cy="responseHeaders"
+            formControlName="responseHeaders"
+          />
+          <div
+            *ngIf="
+              editForm.get('responseHeaders')!.invalid &&
+              (editForm.get('responseHeaders')!.dirty || editForm.get('responseHeaders')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('responseHeaders')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestURLParameters">Request URL Parameters</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestURLParameters"
+            id="field_requestURLParameters"
+            data-cy="requestURLParameters"
+            formControlName="requestURLParameters"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestBody">Request Body</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestBody"
+            id="field_requestBody"
+            data-cy="requestBody"
+            formControlName="requestBody"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requestCookies">Request Cookies</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestCookies"
+            id="field_requestCookies"
+            data-cy="requestCookies"
+            formControlName="requestCookies"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_responseCookies">Response Cookies</label>
+          <input
+            type="text"
+            class="form-control"
+            name="responseCookies"
+            id="field_responseCookies"
+            data-cy="responseCookies"
+            formControlName="responseCookies"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_application">Application</label>
+          <select
+            class="form-control"
+            id="field_application"
+            data-cy="application"
+            name="application"
+            formControlName="application"
+            [compareWith]="compareApplication"
+          >
+            <option *ngIf="!editForm.get('application')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="applicationOption" *ngFor="let applicationOption of applicationsSharedCollection">
+              {{ applicationOption.code }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['application'])!.invalid && (editForm.get(['application'])!.dirty || editForm.get(['application'])!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['application'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
