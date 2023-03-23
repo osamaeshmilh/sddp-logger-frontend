@@ -52,6 +52,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="alertResponseCodes">
+            <div class="d-flex">
+              <span>Alert Response Codes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="organization.code">
             <div class="d-flex">
               <span>Organization</span>
@@ -68,6 +74,7 @@
           </td>
           <td>{{ application.name }}</td>
           <td>{{ application.code }}</td>
+          <td>{{ application.alertResponseCodes }}</td>
           <td>
             <div *ngIf="application.organization">
               <a [routerLink]="['/organization', application.organization.id, 'view']">{{ application.organization.code }}</a>
@@ -75,6 +82,16 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/alert-subscriber']"
+                [queryParams]="{ 'filter[applicationId.in]': application.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Show Alert Subscriber</span>
+              </button>
               <button
                 type="submit"
                 [routerLink]="['/application', application.id, 'view']"

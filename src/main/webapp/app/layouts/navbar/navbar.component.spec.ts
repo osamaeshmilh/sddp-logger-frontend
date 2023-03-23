@@ -23,9 +23,9 @@ describe('Navbar Component', () => {
     activated: true,
     authorities: [],
     email: '',
-    firstName: 'John',
+    first_name: 'John',
     langKey: '',
-    lastName: 'Doe',
+    last_name: 'Doe',
     login: 'john.doe',
     imageUrl: '',
   };

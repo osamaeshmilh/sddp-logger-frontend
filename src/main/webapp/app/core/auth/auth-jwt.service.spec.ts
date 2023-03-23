@@ -46,7 +46,7 @@ describe('Auth JWT', () => {
       sessionStorageService.clear = jest.fn();
 
       // WHEN
-      service.login({ username: 'John', password: '123', rememberMe: true }).subscribe();
+      service.login({ email: 'John', password: '123', rememberMe: true }).subscribe();
       httpMock.expectOne('api/authenticate').flush({ id_token: '1' });
 
       // THEN
@@ -61,7 +61,7 @@ describe('Auth JWT', () => {
       localStorageService.clear = jest.fn();
 
       // WHEN
-      service.login({ username: 'John', password: '123', rememberMe: false }).subscribe();
+      service.login({ email: 'John', password: '123', rememberMe: false }).subscribe();
       httpMock.expectOne('api/authenticate').flush({ id_token: '1' });
 
       // THEN

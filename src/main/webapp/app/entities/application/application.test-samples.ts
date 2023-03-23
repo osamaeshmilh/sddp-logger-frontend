@@ -7,20 +7,21 @@ export const sampleWithRequiredData: IApplication = {
 };
 
 export const sampleWithPartialData: IApplication = {
-  id: 44826,
-  name: 'interface',
-  code: 'maroon Cambridgeshire Avon',
+  id: 8899,
+  name: 'expedite maroon Cambridgeshire',
+  code: 'Metal value-added',
 };
 
 export const sampleWithFullData: IApplication = {
-  id: 66991,
-  name: 'Money',
-  code: 'program bandwidth',
+  id: 73237,
+  name: 'Assurance',
+  code: 'Connecticut Pizza methodologies',
+  alertResponseCodes: 'alarm Malaysia rich',
 };
 
 export const sampleWithNewData: NewApplication = {
-  name: 'Cotton copying',
-  code: 'programming payment Nepal',
+  name: 'CSS',
+  code: 'world-class quantify Codes',
   id: null,
 };
 

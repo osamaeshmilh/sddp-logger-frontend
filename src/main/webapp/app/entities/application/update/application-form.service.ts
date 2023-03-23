@@ -14,13 +14,15 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type ApplicationFormGroupInput = IApplication | PartialWithRequiredKeyOf<NewApplication>;
 
-type ApplicationFormDefaults = Pick<NewApplication, 'id'>;
+type ApplicationFormDefaults = Pick<NewApplication, 'id' | 'alertSubscribers'>;
 
 type ApplicationFormGroupContent = {
   id: FormControl<IApplication['id'] | NewApplication['id']>;
   name: FormControl<IApplication['name']>;
   code: FormControl<IApplication['code']>;
+  alertResponseCodes: FormControl<IApplication['alertResponseCodes']>;
   organization: FormControl<IApplication['organization']>;
+  alertSubscribers: FormControl<IApplication['alertSubscribers']>;
 };
 
 export type ApplicationFormGroup = FormGroup<ApplicationFormGroupContent>;
@@ -46,9 +48,11 @@ export class ApplicationFormService {
       code: new FormControl(applicationRawValue.code, {
         validators: [Validators.required],
       }),
+      alertResponseCodes: new FormControl(applicationRawValue.alertResponseCodes),
       organization: new FormControl(applicationRawValue.organization, {
         validators: [Validators.required],
       }),
+      alertSubscribers: new FormControl(applicationRawValue.alertSubscribers ?? []),
     });
   }
 
@@ -69,6 +73,7 @@ export class ApplicationFormService {
   private getFormDefaults(): ApplicationFormDefaults {
     return {
       id: null,
+      alertSubscribers: [],
     };
   }
 }

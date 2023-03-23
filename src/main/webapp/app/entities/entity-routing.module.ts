@@ -24,6 +24,16 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'HttpLogs' },
         loadChildren: () => import('./http-log/http-log.module').then(m => m.HttpLogModule),
       },
+      {
+        path: 'alert-event',
+        data: { pageTitle: 'AlertEvents' },
+        loadChildren: () => import('./alert-event/alert-event.module').then(m => m.AlertEventModule),
+      },
+      {
+        path: 'alert-subscriber',
+        data: { pageTitle: 'AlertSubscribers' },
+        loadChildren: () => import('./alert-subscriber/alert-subscriber.module').then(m => m.AlertSubscriberModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

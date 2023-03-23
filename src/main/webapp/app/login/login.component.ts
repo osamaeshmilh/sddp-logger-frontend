@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'app/login/login.service';
@@ -10,13 +10,13 @@ import { AccountService } from 'app/core/auth/account.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  @ViewChild('username', { static: false })
-  username!: ElementRef;
+  @ViewChild('email', { static: false })
+  email!: ElementRef;
 
   authenticationError = false;
 
   loginForm = new FormGroup({
-    username: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     password: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     rememberMe: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
   });
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.username.nativeElement.focus();
+    this.email.nativeElement.focus();
   }
 
   login(): void {

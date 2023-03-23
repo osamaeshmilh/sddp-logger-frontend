@@ -42,8 +42,8 @@ describe('User Management Detail Component', () => {
         expect.objectContaining({
           id: 123,
           login: 'user',
-          firstName: 'first',
-          lastName: 'last',
+          first_name: 'first',
+          last_name: 'last',
           email: 'first@last.com',
           activated: true,
           langKey: 'en',

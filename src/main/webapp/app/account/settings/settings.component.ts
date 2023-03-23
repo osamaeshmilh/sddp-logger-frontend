@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
@@ -14,11 +14,11 @@ export class SettingsComponent implements OnInit {
   success = false;
 
   settingsForm = new FormGroup({
-    firstName: new FormControl(initialAccount.firstName, {
+    first_name: new FormControl(initialAccount.first_name, {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
     }),
-    lastName: new FormControl(initialAccount.lastName, {
+    last_name: new FormControl(initialAccount.last_name, {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
     }),
@@ -31,7 +31,6 @@ export class SettingsComponent implements OnInit {
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
     authorities: new FormControl(initialAccount.authorities, { nonNullable: true }),
     imageUrl: new FormControl(initialAccount.imageUrl, { nonNullable: true }),
-    login: new FormControl(initialAccount.login, { nonNullable: true }),
   });
 
   constructor(private accountService: AccountService) {}

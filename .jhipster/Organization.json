@@ -2,7 +2,7 @@
   "applications": "*",
   "changelogDate": "20230309142732",
   "databaseType": "sql",
-  "dto": "mapstruct",
+  "dto": "no",
   "embedded": false,
   "entityTableName": "jhi_organization",
   "fields": [

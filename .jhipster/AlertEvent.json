@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230323111150",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "alert_event",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applicationCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isSent",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "AlertEvent",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "alertSubscriber",
+      "relationshipName": "alertSubscriber",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": false,
+  "service": "serviceClass"
+}

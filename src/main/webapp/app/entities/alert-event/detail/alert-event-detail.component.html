@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="alertEvent">
+      <h2 data-cy="alertEventDetailsHeading"><span>Alert Event</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ alertEvent.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ alertEvent.code }}</span>
+        </dd>
+        <dt><span>Application Code</span></dt>
+        <dd>
+          <span>{{ alertEvent.applicationCode }}</span>
+        </dd>
+        <dt><span>Is Sent</span></dt>
+        <dd>
+          <span>{{ alertEvent.isSent }}</span>
+        </dd>
+        <dt><span>Alert Subscriber</span></dt>
+        <dd>
+          <div *ngIf="alertEvent.alertSubscriber">
+            <a [routerLink]="['/alert-subscriber', alertEvent.alertSubscriber.id, 'view']">{{ alertEvent.alertSubscriber.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/alert-event', alertEvent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

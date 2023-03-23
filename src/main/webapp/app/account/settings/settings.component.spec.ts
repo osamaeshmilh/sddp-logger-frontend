@@ -3,7 +3,7 @@ jest.mock('app/core/auth/account.service');
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder } from '@angular/forms';
-import { throwError, of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
@@ -15,12 +15,12 @@ describe('SettingsComponent', () => {
   let fixture: ComponentFixture<SettingsComponent>;
   let mockAccountService: AccountService;
   const account: Account = {
-    firstName: 'John',
-    lastName: 'Doe',
+    first_name: 'John',
+    last_name: 'Doe',
     activated: true,
     email: 'john.doe@mail.com',
     langKey: 'en',
-    login: 'john',
+    email: 'john',
     authorities: [],
     imageUrl: '',
   };
@@ -47,8 +47,8 @@ describe('SettingsComponent', () => {
     // GIVEN
     mockAccountService.save = jest.fn(() => of({}));
     const settingsFormValues = {
-      firstName: 'John',
-      lastName: 'Doe',
+      first_name: 'John',
+      last_name: 'Doe',
       email: 'john.doe@mail.com',
     };
 

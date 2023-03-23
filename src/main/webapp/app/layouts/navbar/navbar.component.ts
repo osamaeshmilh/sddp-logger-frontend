@@ -34,10 +34,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.entitiesNavbarItems = EntityNavbarItems;
-    this.profileService.getProfileInfo().subscribe(profileInfo => {
-      this.inProduction = profileInfo.inProduction;
-      this.openAPIEnabled = profileInfo.openAPIEnabled;
-    });
+    // this.profileService.getProfileInfo().subscribe(profileInfo => {
+    //   this.inProduction = profileInfo.inProduction;
+    //   this.openAPIEnabled = profileInfo.openAPIEnabled;
+    // });
 
     this.accountService.getAuthenticationState().subscribe(account => {
       this.account = account;

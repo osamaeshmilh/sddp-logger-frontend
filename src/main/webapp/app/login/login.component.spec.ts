@@ -4,7 +4,7 @@ jest.mock('app/login/login.service');
 import { ElementRef } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
-import { Router, Navigation } from '@angular/router';
+import { Navigation, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 
@@ -87,12 +87,12 @@ describe('LoginComponent', () => {
   });
 
   describe('ngAfterViewInit', () => {
-    it('shoult set focus to username input after the view has been initialized', () => {
+    it('shoult set focus to email input after the view has been initialized', () => {
       // GIVEN
       const node = {
         focus: jest.fn(),
       };
-      comp.username = new ElementRef(node);
+      comp.email = new ElementRef(node);
 
       // WHEN
       comp.ngAfterViewInit();
@@ -106,13 +106,13 @@ describe('LoginComponent', () => {
     it('should authenticate the user and navigate to home page', () => {
       // GIVEN
       const credentials = {
-        username: 'admin',
+        email: 'admin',
         password: 'admin',
         rememberMe: true,
       };
 
       comp.loginForm.patchValue({
-        username: 'admin',
+        email: 'admin',
         password: 'admin',
         rememberMe: true,
       });

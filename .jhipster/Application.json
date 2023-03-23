@@ -2,7 +2,7 @@
   "applications": "*",
   "changelogDate": "20230309142731",
   "databaseType": "sql",
-  "dto": "mapstruct",
+  "dto": "no",
   "embedded": false,
   "entityTableName": "application",
   "fields": [
@@ -19,6 +19,10 @@
       "fieldValidateRules": [
         "required"
       ]
+    },
+    {
+      "fieldName": "alertResponseCodes",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -33,6 +37,13 @@
       "relationshipName": "organization",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "alertSubscriber",
+      "otherEntityRelationshipName": "application",
+      "ownerSide": false,
+      "relationshipName": "alertSubscriber",
+      "relationshipType": "many-to-many"
     }
   ],
   "searchEngine": false,

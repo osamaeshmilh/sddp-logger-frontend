@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-alert-event-heading" data-cy="AlertEventCreateUpdateHeading">Create or edit a Alert Event</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_applicationCode">Application Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="applicationCode"
+            id="field_applicationCode"
+            data-cy="applicationCode"
+            formControlName="applicationCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_isSent">Is Sent</label>
+          <input type="checkbox" class="form-check" name="isSent" id="field_isSent" data-cy="isSent" formControlName="isSent" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alertSubscriber">Alert Subscriber</label>
+          <select
+            class="form-control"
+            id="field_alertSubscriber"
+            data-cy="alertSubscriber"
+            name="alertSubscriber"
+            formControlName="alertSubscriber"
+            [compareWith]="compareAlertSubscriber"
+          >
+            <option *ngIf="!editForm.get('alertSubscriber')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="alertSubscriberOption" *ngFor="let alertSubscriberOption of alertSubscribersSharedCollection">
+              {{ alertSubscriberOption.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['alertSubscriber'])!.invalid &&
+            (editForm.get(['alertSubscriber'])!.dirty || editForm.get(['alertSubscriber'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['alertSubscriber'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

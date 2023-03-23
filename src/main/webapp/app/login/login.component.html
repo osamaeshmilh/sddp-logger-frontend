@@ -7,16 +7,16 @@
       </div>
       <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
         <div class="mb-3">
-          <label class="username-label" for="username">Username</label>
+          <label class="username-label" for="email">email</label>
           <input
             type="text"
             class="form-control"
-            name="username"
-            id="username"
-            placeholder="Your username"
-            formControlName="username"
-            #username
-            data-cy="username"
+            name="email"
+            id="email"
+            placeholder="Your email"
+            formControlName="email"
+            #email
+            data-cy="email"
           />
         </div>
 

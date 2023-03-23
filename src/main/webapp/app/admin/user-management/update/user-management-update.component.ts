@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { IUser } from '../user-management.model';
@@ -30,8 +30,8 @@ export class UserManagementUpdateComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$'),
       ],
     }),
-    firstName: new FormControl(userTemplate.firstName, { validators: [Validators.maxLength(50)] }),
-    lastName: new FormControl(userTemplate.lastName, { validators: [Validators.maxLength(50)] }),
+    first_name: new FormControl(userTemplate.first_name, { validators: [Validators.maxLength(50)] }),
+    last_name: new FormControl(userTemplate.last_name, { validators: [Validators.maxLength(50)] }),
     email: new FormControl(userTemplate.email, {
       nonNullable: true,
       validators: [Validators.minLength(5), Validators.maxLength(254), Validators.email],

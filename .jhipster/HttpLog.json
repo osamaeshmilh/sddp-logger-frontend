@@ -2,7 +2,7 @@
   "applications": "*",
   "changelogDate": "20230309142733",
   "databaseType": "sql",
-  "dto": "mapstruct",
+  "dto": "no",
   "embedded": false,
   "entityTableName": "http_log",
   "fields": [
