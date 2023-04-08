@@ -5,6 +5,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+      },
+      {
         path: 'token',
         data: { pageTitle: 'Tokens' },
         loadChildren: () => import('./token/token.module').then(m => m.TokenModule),
