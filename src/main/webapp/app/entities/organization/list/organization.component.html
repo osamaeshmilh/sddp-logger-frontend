@@ -64,6 +64,11 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span>Users</span>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -76,6 +81,7 @@
           <td>{{ organization.code }}</td>
           <td>{{ organization.address }}</td>
           <td>{{ organization.email }}</td>
+          <td>{{ organization.user_count }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button

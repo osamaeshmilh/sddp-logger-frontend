@@ -7,10 +7,6 @@
 
       <div class="alert alert-danger" *ngIf="error"><strong>Registration failed!</strong> Please try again later.</div>
 
-      <div class="alert alert-danger" *ngIf="errorUserExists">
-        <strong>Login name already registered!</strong> Please choose another one.
-      </div>
-
       <div class="alert alert-danger" *ngIf="errorEmailExists"><strong>Email is already in use!</strong> Please choose another one.</div>
 
       <div class="alert alert-danger" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
@@ -20,34 +16,6 @@
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
-        <div class="mb-3">
-          <label class="form-label" for="login">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="login"
-            name="login"
-            placeholder="Your username"
-            formControlName="login"
-            data-cy="username"
-            #login
-          />
-
-          <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Your username is required. </small>
-
-            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
-              Your username is required to be at least 1 character.
-            </small>
-
-            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
-              Your username cannot be longer than 50 characters.
-            </small>
-
-            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern"> Your username is invalid. </small>
-          </div>
-        </div>
-
         <div class="mb-3">
           <label class="form-label" for="email">Email</label>
           <input
