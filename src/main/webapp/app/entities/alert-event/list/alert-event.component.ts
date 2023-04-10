@@ -26,7 +26,7 @@ export class AlertEventComponent implements OnInit {
 
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
-  page = 1;
+  page = 0;
 
   constructor(
     protected alertEventService: AlertEventService,
@@ -84,7 +84,7 @@ export class AlertEventComponent implements OnInit {
 
   protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
     const page = params.get(PAGE_HEADER);
-    this.page = +(page ?? 1);
+    this.page = +(page ?? 0);
     const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA]).split(',');
     this.predicate = sort[0];
     this.ascending = sort[1] === ASC;
@@ -112,9 +112,9 @@ export class AlertEventComponent implements OnInit {
     filterOptions?: IFilterOption[]
   ): Observable<EntityArrayResponseType> {
     this.isLoading = true;
-    const pageToLoad: number = page ?? 1;
+    const pageToLoad: number = page ?? 0;
     const queryObject: any = {
-      page: pageToLoad - 1,
+      page: pageToLoad,
       size: this.itemsPerPage,
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
