@@ -8,7 +8,7 @@ import { AlertEventFormGroup, AlertEventFormService } from './alert-event-form.s
 import { IAlertEvent } from '../alert-event.model';
 import { AlertEventService } from '../service/alert-event.service';
 import { IAlertSubscriber } from 'app/entities/alert-subscriber/alert-subscriber.model';
-import { AlertSubscriberService } from 'app/entities/alert-subscriber/service/alert-subscriber.service';
+import { alert_subscriberservice } from 'app/entities/alert-subscriber/service/alert-subscriber.service';
 
 @Component({
   selector: 'jhi-alert-event-update',
@@ -18,19 +18,19 @@ export class AlertEventUpdateComponent implements OnInit {
   isSaving = false;
   alertEvent: IAlertEvent | null = null;
 
-  alertSubscribersSharedCollection: IAlertSubscriber[] = [];
+  alert_subscribersSharedCollection: IAlertSubscriber[] = [];
 
   editForm: AlertEventFormGroup = this.alertEventFormService.createAlertEventFormGroup();
 
   constructor(
     protected alertEventService: AlertEventService,
     protected alertEventFormService: AlertEventFormService,
-    protected alertSubscriberService: AlertSubscriberService,
+    protected alert_subscriberservice: alert_subscriberservice,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareAlertSubscriber = (o1: IAlertSubscriber | null, o2: IAlertSubscriber | null): boolean =>
-    this.alertSubscriberService.compareAlertSubscriber(o1, o2);
+    this.alert_subscriberservice.compareAlertSubscriber(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ alertEvent }) => {
@@ -80,24 +80,24 @@ export class AlertEventUpdateComponent implements OnInit {
     this.alertEvent = alertEvent;
     this.alertEventFormService.resetForm(this.editForm, alertEvent);
 
-    this.alertSubscribersSharedCollection = this.alertSubscriberService.addAlertSubscriberToCollectionIfMissing<IAlertSubscriber>(
-      this.alertSubscribersSharedCollection,
+    this.alert_subscribersSharedCollection = this.alert_subscriberservice.addAlertSubscriberToCollectionIfMissing<IAlertSubscriber>(
+      this.alert_subscribersSharedCollection,
       alertEvent.alertSubscriber
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.alertSubscriberService
+    this.alert_subscriberservice
       .query()
       .pipe(map((res: HttpResponse<IAlertSubscriber[]>) => res.body ?? []))
       .pipe(
-        map((alertSubscribers: IAlertSubscriber[]) =>
-          this.alertSubscriberService.addAlertSubscriberToCollectionIfMissing<IAlertSubscriber>(
-            alertSubscribers,
+        map((alert_subscribers: IAlertSubscriber[]) =>
+          this.alert_subscriberservice.addAlertSubscriberToCollectionIfMissing<IAlertSubscriber>(
+            alert_subscribers,
             this.alertEvent?.alertSubscriber
           )
         )
       )
-      .subscribe((alertSubscribers: IAlertSubscriber[]) => (this.alertSubscribersSharedCollection = alertSubscribers));
+      .subscribe((alert_subscribers: IAlertSubscriber[]) => (this.alert_subscribersSharedCollection = alert_subscribers));
   }
 }

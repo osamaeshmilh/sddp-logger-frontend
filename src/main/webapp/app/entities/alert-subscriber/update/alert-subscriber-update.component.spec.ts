@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { from, of, Subject } from 'rxjs';
 
 import { AlertSubscriberFormService } from './alert-subscriber-form.service';
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 import { IAlertSubscriber } from '../alert-subscriber.model';
 import { IApplication } from 'app/entities/application/application.model';
 import { ApplicationService } from 'app/entities/application/service/application.service';
@@ -19,7 +19,7 @@ describe('AlertSubscriber Management Update Component', () => {
   let fixture: ComponentFixture<AlertSubscriberUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let alertSubscriberFormService: AlertSubscriberFormService;
-  let alertSubscriberService: AlertSubscriberService;
+  let alert_subscriberservice: alert_subscriberservice;
   let applicationService: ApplicationService;
 
   beforeEach(() => {
@@ -42,7 +42,7 @@ describe('AlertSubscriber Management Update Component', () => {
     fixture = TestBed.createComponent(AlertSubscriberUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     alertSubscriberFormService = TestBed.inject(AlertSubscriberFormService);
-    alertSubscriberService = TestBed.inject(AlertSubscriberService);
+    alert_subscriberservice = TestBed.inject(alert_subscriberservice);
     applicationService = TestBed.inject(ApplicationService);
 
     comp = fixture.componentInstance;
@@ -90,7 +90,7 @@ describe('AlertSubscriber Management Update Component', () => {
       const saveSubject = new Subject<HttpResponse<IAlertSubscriber>>();
       const alertSubscriber = { id: 123 };
       jest.spyOn(alertSubscriberFormService, 'getAlertSubscriber').mockReturnValue(alertSubscriber);
-      jest.spyOn(alertSubscriberService, 'update').mockReturnValue(saveSubject);
+      jest.spyOn(alert_subscriberservice, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ alertSubscriber });
       comp.ngOnInit();
@@ -104,7 +104,7 @@ describe('AlertSubscriber Management Update Component', () => {
       // THEN
       expect(alertSubscriberFormService.getAlertSubscriber).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(alertSubscriberService.update).toHaveBeenCalledWith(expect.objectContaining(alertSubscriber));
+      expect(alert_subscriberservice.update).toHaveBeenCalledWith(expect.objectContaining(alertSubscriber));
       expect(comp.isSaving).toEqual(false);
     });
 
@@ -113,7 +113,7 @@ describe('AlertSubscriber Management Update Component', () => {
       const saveSubject = new Subject<HttpResponse<IAlertSubscriber>>();
       const alertSubscriber = { id: 123 };
       jest.spyOn(alertSubscriberFormService, 'getAlertSubscriber').mockReturnValue({ id: null });
-      jest.spyOn(alertSubscriberService, 'create').mockReturnValue(saveSubject);
+      jest.spyOn(alert_subscriberservice, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ alertSubscriber: null });
       comp.ngOnInit();
@@ -126,7 +126,7 @@ describe('AlertSubscriber Management Update Component', () => {
 
       // THEN
       expect(alertSubscriberFormService.getAlertSubscriber).toHaveBeenCalled();
-      expect(alertSubscriberService.create).toHaveBeenCalled();
+      expect(alert_subscriberservice.create).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
@@ -135,7 +135,7 @@ describe('AlertSubscriber Management Update Component', () => {
       // GIVEN
       const saveSubject = new Subject<HttpResponse<IAlertSubscriber>>();
       const alertSubscriber = { id: 123 };
-      jest.spyOn(alertSubscriberService, 'update').mockReturnValue(saveSubject);
+      jest.spyOn(alert_subscriberservice, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ alertSubscriber });
       comp.ngOnInit();
@@ -146,7 +146,7 @@ describe('AlertSubscriber Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(alertSubscriberService.update).toHaveBeenCalled();
+      expect(alert_subscriberservice.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });

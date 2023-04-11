@@ -21,6 +21,7 @@ export class HttpLogUpdateComponent implements OnInit {
   httpLog: IHttpLog | null = null;
   httpMethodValues = Object.keys(HttpMethod);
   httpStatusCodeValues = Object.keys(HttpStatusCode);
+  httpStatusCodeArray: { value: number; name: string }[] | undefined;
 
   applicationsSharedCollection: IApplication[] = [];
 
@@ -53,6 +54,7 @@ export class HttpLogUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const httpLog = this.httpLogFormService.getHttpLog(this.editForm);
+    httpLog.application_id = httpLog.application?.id;
     if (httpLog.id !== null) {
       this.subscribeToSaveResponse(this.httpLogService.update(httpLog));
     } else {

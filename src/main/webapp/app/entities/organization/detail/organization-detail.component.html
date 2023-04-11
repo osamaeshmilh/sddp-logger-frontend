@@ -32,6 +32,44 @@
         </dd>
       </dl>
 
+      <br />
+      <h5>Applications</h5>
+      <br />
+
+      <!--          <div *ngIf="members">-->
+      <!--            <table aria-describedby="page-heading" class="table table-bordered table-hover">-->
+      <!--              <thead class="table-active">-->
+      <!--              <tr>-->
+      <!--                <th scope="col"><span>ر.ت</span></th>-->
+      <!--                <th scope="col"><span>الاسم</span></th>-->
+      <!--                <th scope="col"><span>الرقم الوطني</span></th>-->
+      <!--                <th scope="col"><span>الصفة</span></th>-->
+      <!--                <th scope="col"><span>المؤهل العلمي</span></th>-->
+      <!--                <th scope="col"><span>جهة العمل الأصلية</span></th>-->
+      <!--                <th scope="col"><span>الجنسية</span></th>-->
+      <!--                <th scope="col"><span>رقم الهاتف</span></th>-->
+      <!--              </tr>-->
+      <!--              </thead>-->
+      <!--              <tbody>-->
+      <!--              <tr *ngFor="let member of members; let i = index">-->
+      <!--                <td>{{ i + 1 }}</td>-->
+      <!--                <td>{{ member.name }}</td>-->
+      <!--                <td>{{ member.nationalNo }}</td>-->
+      <!--                <td>{{ member.membershipType | translateMe }}</td>-->
+      <!--                <td>{{ member.qualification }}</td>-->
+      <!--                <td>{{ member.jobPlace }}</td>-->
+
+      <!--                <td>-->
+      <!--                  <div *ngIf="member.countryId">-->
+      <!--                    <a>{{ member.countryNameAr }}</a>-->
+      <!--                  </div>-->
+      <!--                </td>-->
+      <!--                <td>{{ member.mobileNo }}</td>-->
+      <!--              </tr>-->
+      <!--              </tbody>-->
+      <!--            </table>-->
+      <!--          </div>-->
+
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
       </button>

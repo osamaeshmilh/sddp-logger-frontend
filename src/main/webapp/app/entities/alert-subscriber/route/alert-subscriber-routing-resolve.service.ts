@@ -5,11 +5,11 @@ import { EMPTY, Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { IAlertSubscriber } from '../alert-subscriber.model';
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 
 @Injectable({ providedIn: 'root' })
 export class AlertSubscriberRoutingResolveService implements Resolve<IAlertSubscriber | null> {
-  constructor(protected service: AlertSubscriberService, protected router: Router) {}
+  constructor(protected service: alert_subscriberservice, protected router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IAlertSubscriber | null | never> {
     const id = route.params['id'];

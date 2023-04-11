@@ -50,6 +50,8 @@ export class ApplicationUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const application = this.applicationFormService.getApplication(this.editForm);
+    application.organization_id = application.organization?.id;
+
     if (application.id !== null) {
       this.subscribeToSaveResponse(this.applicationService.update(application));
     } else {

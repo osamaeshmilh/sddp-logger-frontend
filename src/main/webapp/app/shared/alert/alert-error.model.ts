@@ -1,3 +1,3 @@
 export class AlertError {
-  constructor(public message: string) {}
+  constructor(public error: string) {}
 }

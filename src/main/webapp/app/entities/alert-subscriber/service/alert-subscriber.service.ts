@@ -13,7 +13,7 @@ export type EntityResponseType = HttpResponse<IAlertSubscriber>;
 export type EntityArrayResponseType = HttpResponse<IAlertSubscriber[]>;
 
 @Injectable({ providedIn: 'root' })
-export class AlertSubscriberService {
+export class alert_subscriberservice {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/alert-subscribers');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
@@ -57,14 +57,14 @@ export class AlertSubscriberService {
 
   addAlertSubscriberToCollectionIfMissing<Type extends Pick<IAlertSubscriber, 'id'>>(
     alertSubscriberCollection: Type[],
-    ...alertSubscribersToCheck: (Type | null | undefined)[]
+    ...alert_subscribersToCheck: (Type | null | undefined)[]
   ): Type[] {
-    const alertSubscribers: Type[] = alertSubscribersToCheck.filter(isPresent);
-    if (alertSubscribers.length > 0) {
+    const alert_subscribers: Type[] = alert_subscribersToCheck.filter(isPresent);
+    if (alert_subscribers.length > 0) {
       const alertSubscriberCollectionIdentifiers = alertSubscriberCollection.map(
         alertSubscriberItem => this.getAlertSubscriberIdentifier(alertSubscriberItem)!
       );
-      const alertSubscribersToAdd = alertSubscribers.filter(alertSubscriberItem => {
+      const alert_subscribersToAdd = alert_subscribers.filter(alertSubscriberItem => {
         const alertSubscriberIdentifier = this.getAlertSubscriberIdentifier(alertSubscriberItem);
         if (alertSubscriberCollectionIdentifiers.includes(alertSubscriberIdentifier)) {
           return false;
@@ -72,7 +72,7 @@ export class AlertSubscriberService {
         alertSubscriberCollectionIdentifiers.push(alertSubscriberIdentifier);
         return true;
       });
-      return [...alertSubscribersToAdd, ...alertSubscriberCollection];
+      return [...alert_subscribersToAdd, ...alertSubscriberCollection];
     }
     return alertSubscriberCollection;
   }

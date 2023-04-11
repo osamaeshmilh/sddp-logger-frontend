@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IApplication, NewApplication } from '../application.model';
+import { IToken } from '../../token/token.model';
 
 export type PartialUpdateApplication = Partial<IApplication> & Pick<IApplication, 'id'>;
 
@@ -15,6 +16,7 @@ export type EntityArrayResponseType = HttpResponse<IApplication[]>;
 @Injectable({ providedIn: 'root' })
 export class ApplicationService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/applications');
+  protected resourceUrlApp = this.applicationConfigService.getEndpointFor('api/application');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -45,6 +47,14 @@ export class ApplicationService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  regenerateToken(applicationId: number): Observable<HttpResponse<IToken>> {
+    return this.http.get<IApplication>(`${this.resourceUrlApp}/regenerate_token/${applicationId}`, { observe: 'response' });
+  }
+
+  retrieveToken(applicationId: number): Observable<HttpResponse<IToken>> {
+    return this.http.get<IApplication>(`${this.resourceUrlApp}/retrieve_token/${applicationId}`, { observe: 'response' });
   }
 
   getApplicationIdentifier(application: Pick<IApplication, 'id'>): number {

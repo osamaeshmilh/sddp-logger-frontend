@@ -14,14 +14,14 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type TokenFormGroupInput = IToken | PartialWithRequiredKeyOf<NewToken>;
 
-type TokenFormDefaults = Pick<NewToken, 'id' | 'isActive'>;
+type TokenFormDefaults = Pick<NewToken, 'id' | 'is_active'>;
 
 type TokenFormGroupContent = {
   id: FormControl<IToken['id'] | NewToken['id']>;
-  accessToken: FormControl<IToken['accessToken']>;
-  refreshToken: FormControl<IToken['refreshToken']>;
-  expiryDate: FormControl<IToken['expiryDate']>;
-  isActive: FormControl<IToken['isActive']>;
+  access_token: FormControl<IToken['access_token']>;
+  refresh_token: FormControl<IToken['refresh_token']>;
+  expiry_date: FormControl<IToken['expiry_date']>;
+  is_active: FormControl<IToken['is_active']>;
   application: FormControl<IToken['application']>;
 };
 
@@ -42,12 +42,12 @@ export class TokenFormService {
           validators: [Validators.required],
         }
       ),
-      accessToken: new FormControl(tokenRawValue.accessToken, {
+      access_token: new FormControl(tokenRawValue.access_token, {
         validators: [Validators.required],
       }),
-      refreshToken: new FormControl(tokenRawValue.refreshToken),
-      expiryDate: new FormControl(tokenRawValue.expiryDate),
-      isActive: new FormControl(tokenRawValue.isActive, {
+      refresh_token: new FormControl(tokenRawValue.refresh_token),
+      expiry_date: new FormControl(tokenRawValue.expiry_date),
+      is_active: new FormControl(tokenRawValue.is_active, {
         validators: [Validators.required],
       }),
       application: new FormControl(tokenRawValue.application, {
@@ -73,7 +73,7 @@ export class TokenFormService {
   private getFormDefaults(): TokenFormDefaults {
     return {
       id: null,
-      isActive: false,
+      is_active: false,
     };
   }
 }

@@ -18,7 +18,7 @@ export class AlertErrorComponent implements OnDestroy {
   constructor(private alertService: AlertService, private eventManager: EventManager) {
     this.errorListener = eventManager.subscribe('sddpLoggerFrontendApp.error', (response: EventWithContent<unknown> | string) => {
       const errorResponse = (response as EventWithContent<AlertError>).content;
-      this.addErrorAlert(errorResponse.message);
+      this.addErrorAlert(errorResponse.error);
     });
 
     this.httpErrorListener = eventManager.subscribe('sddpLoggerFrontendApp.httpError', (response: EventWithContent<unknown> | string) => {
@@ -89,7 +89,17 @@ export class AlertErrorComponent implements OnDestroy {
     alert.close?.(this.alerts);
   }
 
-  private addErrorAlert(message?: string): void {
-    this.alertService.addAlert({ type: 'danger', message }, this.alerts);
+  private addErrorAlert(error: any): void {
+    let errorMessage: string;
+
+    if (typeof error === 'string') {
+      errorMessage = error;
+    } else if (error.error) {
+      errorMessage = error.error;
+    } else {
+      errorMessage = JSON.stringify(error);
+    }
+
+    this.alertService.addAlert({ type: 'danger', error: errorMessage }, this.alerts);
   }
 }

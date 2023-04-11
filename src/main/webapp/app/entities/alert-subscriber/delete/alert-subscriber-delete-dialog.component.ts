@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IAlertSubscriber } from '../alert-subscriber.model';
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
 
 @Component({
@@ -11,14 +11,14 @@ import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
 export class AlertSubscriberDeleteDialogComponent {
   alertSubscriber?: IAlertSubscriber;
 
-  constructor(protected alertSubscriberService: AlertSubscriberService, protected activeModal: NgbActiveModal) {}
+  constructor(protected alert_subscriberservice: alert_subscriberservice, protected activeModal: NgbActiveModal) {}
 
   cancel(): void {
     this.activeModal.dismiss();
   }
 
   confirmDelete(id: number): void {
-    this.alertSubscriberService.delete(id).subscribe(() => {
+    this.alert_subscriberservice.delete(id).subscribe(() => {
       this.activeModal.close(ITEM_DELETED_EVENT);
     });
   }

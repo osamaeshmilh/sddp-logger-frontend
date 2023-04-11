@@ -44,7 +44,7 @@
             [compareWith]="compareAlertSubscriber"
           >
             <option *ngIf="!editForm.get('alertSubscriber')!.value" [ngValue]="null" selected></option>
-            <option [ngValue]="alertSubscriberOption" *ngFor="let alertSubscriberOption of alertSubscribersSharedCollection">
+            <option [ngValue]="alertSubscriberOption" *ngFor="let alertSubscriberOption of alert_subscribersSharedCollection">
               {{ alertSubscriberOption.name }}
             </option>
           </select>

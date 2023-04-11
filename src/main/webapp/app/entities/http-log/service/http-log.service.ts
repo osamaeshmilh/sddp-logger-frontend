@@ -11,8 +11,8 @@ import { IHttpLog, NewHttpLog } from '../http-log.model';
 
 export type PartialUpdateHttpLog = Partial<IHttpLog> & Pick<IHttpLog, 'id'>;
 
-type RestOf<T extends IHttpLog | NewHttpLog> = Omit<T, 'requestTimestamp'> & {
-  requestTimestamp?: string | null;
+type RestOf<T extends IHttpLog | NewHttpLog> = Omit<T, 'request_timestamp'> & {
+  request_timestamp?: string | null;
 };
 
 export type RestHttpLog = RestOf<IHttpLog>;
@@ -99,14 +99,14 @@ export class HttpLogService {
   protected convertDateFromClient<T extends IHttpLog | NewHttpLog | PartialUpdateHttpLog>(httpLog: T): RestOf<T> {
     return {
       ...httpLog,
-      requestTimestamp: httpLog.requestTimestamp?.toJSON() ?? null,
+      request_timestamp: httpLog.request_timestamp?.toJSON() ?? null,
     };
   }
 
   protected convertDateFromServer(restHttpLog: RestHttpLog): IHttpLog {
     return {
       ...restHttpLog,
-      requestTimestamp: restHttpLog.requestTimestamp ? dayjs(restHttpLog.requestTimestamp) : undefined,
+      request_timestamp: restHttpLog.request_timestamp ? dayjs(restHttpLog.request_timestamp) : undefined,
     };
   }
 

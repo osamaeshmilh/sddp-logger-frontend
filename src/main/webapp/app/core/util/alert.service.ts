@@ -1,4 +1,4 @@
-import { Injectable, SecurityContext, NgZone } from '@angular/core';
+import { Injectable, NgZone, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 export type AlertType = 'success' | 'danger' | 'warning' | 'info';
@@ -6,7 +6,7 @@ export type AlertType = 'success' | 'danger' | 'warning' | 'info';
 export interface Alert {
   id?: number;
   type: AlertType;
-  message?: string;
+  error?: string;
   timeout?: number;
   toast?: boolean;
   position?: string;
@@ -45,7 +45,7 @@ export class AlertService {
   addAlert(alert: Alert, extAlerts?: Alert[]): Alert {
     alert.id = this.alertId++;
 
-    alert.message = this.sanitizer.sanitize(SecurityContext.HTML, alert.message ?? '') ?? '';
+    alert.error = this.sanitizer.sanitize(SecurityContext.HTML, alert.error ?? '') ?? '';
     alert.timeout = alert.timeout ?? this.timeout;
     alert.toast = alert.toast ?? this.toast;
     alert.position = alert.position ?? this.position;

@@ -12,8 +12,8 @@ import { IToken, NewToken } from '../token.model';
 
 export type PartialUpdateToken = Partial<IToken> & Pick<IToken, 'id'>;
 
-type RestOf<T extends IToken | NewToken> = Omit<T, 'expiryDate'> & {
-  expiryDate?: string | null;
+type RestOf<T extends IToken | NewToken> = Omit<T, 'expiry_date'> & {
+  expiry_date?: string | null;
 };
 
 export type RestToken = RestOf<IToken>;
@@ -98,14 +98,14 @@ export class TokenService {
   protected convertDateFromClient<T extends IToken | NewToken | PartialUpdateToken>(token: T): RestOf<T> {
     return {
       ...token,
-      expiryDate: token.expiryDate?.format(DATE_FORMAT) ?? null,
+      expiry_date: token.expiry_date?.format(DATE_FORMAT) ?? null,
     };
   }
 
   protected convertDateFromServer(restToken: RestToken): IToken {
     return {
       ...restToken,
-      expiryDate: restToken.expiryDate ? dayjs(restToken.expiryDate) : undefined,
+      expiry_date: restToken.expiry_date ? dayjs(restToken.expiry_date) : undefined,
     };
   }
 

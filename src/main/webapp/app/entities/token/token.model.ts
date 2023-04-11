@@ -3,10 +3,10 @@ import { IApplication } from 'app/entities/application/application.model';
 
 export interface IToken {
   id: number;
-  accessToken?: string | null;
-  refreshToken?: string | null;
-  expiryDate?: dayjs.Dayjs | null;
-  isActive?: boolean | null;
+  access_token?: string | null;
+  refresh_token?: string | null;
+  expiry_date?: dayjs.Dayjs | null;
+  is_active?: boolean | null;
   application?: Pick<IApplication, 'id' | 'code'> | null;
 }
 

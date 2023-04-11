@@ -19,30 +19,30 @@ type HttpLogFormGroupInput = IHttpLog | PartialWithRequiredKeyOf<NewHttpLog>;
 /**
  * Type that converts some properties for forms.
  */
-type FormValueOf<T extends IHttpLog | NewHttpLog> = Omit<T, 'requestTimestamp'> & {
-  requestTimestamp?: string | null;
+type FormValueOf<T extends IHttpLog | NewHttpLog> = Omit<T, 'request_timestamp'> & {
+  request_timestamp?: string | null;
 };
 
 type HttpLogFormRawValue = FormValueOf<IHttpLog>;
 
 type NewHttpLogFormRawValue = FormValueOf<NewHttpLog>;
 
-type HttpLogFormDefaults = Pick<NewHttpLog, 'id' | 'requestTimestamp'>;
+type HttpLogFormDefaults = Pick<NewHttpLog, 'id' | 'request_timestamp'>;
 
 type HttpLogFormGroupContent = {
   id: FormControl<HttpLogFormRawValue['id'] | NewHttpLog['id']>;
-  requestTimestamp: FormControl<HttpLogFormRawValue['requestTimestamp']>;
-  httpMethod: FormControl<HttpLogFormRawValue['httpMethod']>;
-  requestUrl: FormControl<HttpLogFormRawValue['requestUrl']>;
-  httpStatusCode: FormControl<HttpLogFormRawValue['httpStatusCode']>;
-  remoteIPAddress: FormControl<HttpLogFormRawValue['remoteIPAddress']>;
+  request_timestamp: FormControl<HttpLogFormRawValue['request_timestamp']>;
+  http_method: FormControl<HttpLogFormRawValue['http_method']>;
+  request_url: FormControl<HttpLogFormRawValue['request_url']>;
+  http_status_code: FormControl<HttpLogFormRawValue['http_status_code']>;
+  remote_ip_address: FormControl<HttpLogFormRawValue['remote_ip_address']>;
   duration: FormControl<HttpLogFormRawValue['duration']>;
-  requestHeaders: FormControl<HttpLogFormRawValue['requestHeaders']>;
-  responseHeaders: FormControl<HttpLogFormRawValue['responseHeaders']>;
-  requestURLParameters: FormControl<HttpLogFormRawValue['requestURLParameters']>;
-  requestBody: FormControl<HttpLogFormRawValue['requestBody']>;
-  requestCookies: FormControl<HttpLogFormRawValue['requestCookies']>;
-  responseCookies: FormControl<HttpLogFormRawValue['responseCookies']>;
+  request_headers: FormControl<HttpLogFormRawValue['request_headers']>;
+  response_headers: FormControl<HttpLogFormRawValue['response_headers']>;
+  request_url_parameters: FormControl<HttpLogFormRawValue['request_url_parameters']>;
+  request_body: FormControl<HttpLogFormRawValue['request_body']>;
+  request_cookies: FormControl<HttpLogFormRawValue['request_cookies']>;
+  response_cookies: FormControl<HttpLogFormRawValue['response_cookies']>;
   application: FormControl<HttpLogFormRawValue['application']>;
 };
 
@@ -63,34 +63,34 @@ export class HttpLogFormService {
           validators: [Validators.required],
         }
       ),
-      requestTimestamp: new FormControl(httpLogRawValue.requestTimestamp, {
+      request_timestamp: new FormControl(httpLogRawValue.request_timestamp, {
         validators: [Validators.required],
       }),
-      httpMethod: new FormControl(httpLogRawValue.httpMethod, {
+      http_method: new FormControl(httpLogRawValue.http_method, {
         validators: [Validators.required],
       }),
-      requestUrl: new FormControl(httpLogRawValue.requestUrl, {
+      request_url: new FormControl(httpLogRawValue.request_url, {
         validators: [Validators.required],
       }),
-      httpStatusCode: new FormControl(httpLogRawValue.httpStatusCode, {
+      http_status_code: new FormControl(httpLogRawValue.http_status_code, {
         validators: [Validators.required],
       }),
-      remoteIPAddress: new FormControl(httpLogRawValue.remoteIPAddress, {
+      remote_ip_address: new FormControl(httpLogRawValue.remote_ip_address, {
         validators: [Validators.required],
       }),
       duration: new FormControl(httpLogRawValue.duration, {
         validators: [Validators.required],
       }),
-      requestHeaders: new FormControl(httpLogRawValue.requestHeaders, {
+      request_headers: new FormControl(httpLogRawValue.request_headers, {
         validators: [Validators.required],
       }),
-      responseHeaders: new FormControl(httpLogRawValue.responseHeaders, {
+      response_headers: new FormControl(httpLogRawValue.response_headers, {
         validators: [Validators.required],
       }),
-      requestURLParameters: new FormControl(httpLogRawValue.requestURLParameters),
-      requestBody: new FormControl(httpLogRawValue.requestBody),
-      requestCookies: new FormControl(httpLogRawValue.requestCookies),
-      responseCookies: new FormControl(httpLogRawValue.responseCookies),
+      request_url_parameters: new FormControl(httpLogRawValue.request_url_parameters),
+      request_body: new FormControl(httpLogRawValue.request_body),
+      request_cookies: new FormControl(httpLogRawValue.request_cookies),
+      response_cookies: new FormControl(httpLogRawValue.response_cookies),
       application: new FormControl(httpLogRawValue.application, {
         validators: [Validators.required],
       }),
@@ -116,14 +116,14 @@ export class HttpLogFormService {
 
     return {
       id: null,
-      requestTimestamp: currentTime,
+      request_timestamp: currentTime,
     };
   }
 
   private convertHttpLogRawValueToHttpLog(rawHttpLog: HttpLogFormRawValue | NewHttpLogFormRawValue): IHttpLog | NewHttpLog {
     return {
       ...rawHttpLog,
-      requestTimestamp: dayjs(rawHttpLog.requestTimestamp, DATE_TIME_FORMAT),
+      request_timestamp: dayjs(rawHttpLog.request_timestamp, DATE_TIME_FORMAT),
     };
   }
 
@@ -132,7 +132,7 @@ export class HttpLogFormService {
   ): HttpLogFormRawValue | PartialWithRequiredKeyOf<NewHttpLogFormRawValue> {
     return {
       ...httpLog,
-      requestTimestamp: httpLog.requestTimestamp ? httpLog.requestTimestamp.format(DATE_TIME_FORMAT) : undefined,
+      request_timestamp: httpLog.request_timestamp ? httpLog.request_timestamp.format(DATE_TIME_FORMAT) : undefined,
     };
   }
 }

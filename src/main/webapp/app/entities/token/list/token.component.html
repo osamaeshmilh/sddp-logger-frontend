@@ -40,25 +40,25 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="accessToken">
+          <th scope="col" jhiSortBy="access_token">
             <div class="d-flex">
               <span>Access Token</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="refreshToken">
+          <th scope="col" jhiSortBy="refresh_token">
             <div class="d-flex">
               <span>Refresh Token</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="expiryDate">
+          <th scope="col" jhiSortBy="expiry_date">
             <div class="d-flex">
               <span>Expiry Date</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="isActive">
+          <th scope="col" jhiSortBy="is_active">
             <div class="d-flex">
               <span>Is Active</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -78,10 +78,10 @@
           <td>
             <a [routerLink]="['/token', token.id, 'view']">{{ token.id }}</a>
           </td>
-          <td>{{ token.accessToken }}</td>
-          <td>{{ token.refreshToken }}</td>
-          <td>{{ token.expiryDate | formatMediumDate }}</td>
-          <td>{{ token.isActive }}</td>
+          <td>{{ token.access_token }}</td>
+          <td>{{ token.refresh_token }}</td>
+          <td>{{ token.expiry_date | formatMediumDate }}</td>
+          <td>{{ token.is_active }}</td>
           <td>
             <div *ngIf="token.application">
               <a [routerLink]="['/application', token.application.id, 'view']">{{ token.application.code }}</a>

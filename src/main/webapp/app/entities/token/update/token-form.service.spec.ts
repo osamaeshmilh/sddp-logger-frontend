@@ -20,10 +20,10 @@ describe('Token Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            accessToken: expect.any(Object),
-            refreshToken: expect.any(Object),
-            expiryDate: expect.any(Object),
-            isActive: expect.any(Object),
+            access_token: expect.any(Object),
+            refresh_token: expect.any(Object),
+            expiry_date: expect.any(Object),
+            is_active: expect.any(Object),
             application: expect.any(Object),
           })
         );
@@ -35,10 +35,10 @@ describe('Token Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            accessToken: expect.any(Object),
-            refreshToken: expect.any(Object),
-            expiryDate: expect.any(Object),
-            isActive: expect.any(Object),
+            access_token: expect.any(Object),
+            refresh_token: expect.any(Object),
+            expiry_date: expect.any(Object),
+            is_active: expect.any(Object),
             application: expect.any(Object),
           })
         );

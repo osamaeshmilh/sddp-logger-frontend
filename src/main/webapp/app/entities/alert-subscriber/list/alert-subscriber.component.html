@@ -26,11 +26,11 @@
 
   <jhi-filter [filters]="filters"></jhi-filter>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="alertSubscribers?.length === 0">
+  <div class="alert alert-warning" id="no-result" *ngIf="alert_subscribers?.length === 0">
     <span>No Alert Subscribers found</span>
   </div>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="alertSubscribers && alertSubscribers.length > 0">
+  <div class="table-responsive table-entities" id="entities" *ngIf="alert_subscribers && alert_subscribers.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
@@ -56,7 +56,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let alertSubscriber of alertSubscribers; trackBy: trackId" data-cy="entityTable">
+        <tr *ngFor="let alertSubscriber of alert_subscribers; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/alert-subscriber', alertSubscriber.id, 'view']">{{ alertSubscriber.id }}</a>
           </td>
@@ -64,6 +64,23 @@
           <td>{{ alertSubscriber.email }}</td>
           <td class="text-end">
             <div class="btn-group">
+              <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Filter</button>
+                <div ngbDropdownMenu aria-labelledby="dropdown1">
+                  <button
+                    ngbDropdownItem
+                    type="submit"
+                    [routerLink]="['/alert-event']"
+                    [queryParams]="{ 'filter[q[alert_subscriber_id_eq]]': alertSubscriber.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Show Alert Events</span>
+                  </button>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 [routerLink]="['/alert-subscriber', alertSubscriber.id, 'view']"
@@ -95,7 +112,7 @@
     </table>
   </div>
 
-  <div *ngIf="alertSubscribers && alertSubscribers.length > 0">
+  <div *ngIf="alert_subscribers && alert_subscribers.length > 0">
     <div class="d-flex justify-content-center">
       <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
     </div>

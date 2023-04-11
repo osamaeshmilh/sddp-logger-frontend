@@ -22,9 +22,9 @@ describe('Application Form Service', () => {
             id: expect.any(Object),
             name: expect.any(Object),
             code: expect.any(Object),
-            alertResponseCodes: expect.any(Object),
+            alert_response_codes: expect.any(Object),
             organization: expect.any(Object),
-            alertSubscribers: expect.any(Object),
+            alert_subscribers: expect.any(Object),
           })
         );
       });
@@ -37,9 +37,9 @@ describe('Application Form Service', () => {
             id: expect.any(Object),
             name: expect.any(Object),
             code: expect.any(Object),
-            alertResponseCodes: expect.any(Object),
+            alert_response_codes: expect.any(Object),
             organization: expect.any(Object),
-            alertSubscribers: expect.any(Object),
+            alert_subscribers: expect.any(Object),
           })
         );
       });

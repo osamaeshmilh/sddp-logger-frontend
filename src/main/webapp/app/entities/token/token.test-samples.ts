@@ -4,28 +4,28 @@ import { IToken, NewToken } from './token.model';
 
 export const sampleWithRequiredData: IToken = {
   id: 45614,
-  accessToken: 'Markets Central',
-  isActive: false,
+  access_token: 'Markets Central',
+  is_active: false,
 };
 
 export const sampleWithPartialData: IToken = {
   id: 54781,
-  accessToken: 'e-tailers Maine',
-  expiryDate: dayjs('2023-03-09'),
-  isActive: true,
+  access_token: 'e-tailers Maine',
+  expiry_date: dayjs('2023-03-09'),
+  is_active: true,
 };
 
 export const sampleWithFullData: IToken = {
   id: 66387,
-  accessToken: 'revolutionize Metal generating',
-  refreshToken: 'Factors',
-  expiryDate: dayjs('2023-03-08'),
-  isActive: true,
+  access_token: 'revolutionize Metal generating',
+  refresh_token: 'Factors',
+  expiry_date: dayjs('2023-03-08'),
+  is_active: true,
 };
 
 export const sampleWithNewData: NewToken = {
-  accessToken: 'Lebanese',
-  isActive: false,
+  access_token: 'Lebanese',
+  is_active: false,
   id: null,
 };
 

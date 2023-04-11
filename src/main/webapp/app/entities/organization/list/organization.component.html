@@ -86,6 +86,11 @@
               <span>Users</span>
             </div>
           </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span>Applications</span>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -99,8 +104,37 @@
           <td>{{ organization.address }}</td>
           <td>{{ organization.email }}</td>
           <td>{{ organization.user_count }}</td>
+          <td>{{ organization.applications_count }}</td>
           <td class="text-end">
             <div class="btn-group">
+              <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Filter</button>
+                <div ngbDropdownMenu aria-labelledby="dropdown1">
+                  <button
+                    ngbDropdownItem
+                    type="submit"
+                    [routerLink]="['/application']"
+                    [queryParams]="{ 'filter[q[organization_id_eq]]': organization.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Show Applications</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    type="submit"
+                    [routerLink]="['/admin/user-management']"
+                    [queryParams]="{ 'filter[q[organization_id_eq]]': organization.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Show Users</span>
+                  </button>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 [routerLink]="['/organization', organization.id, 'view']"

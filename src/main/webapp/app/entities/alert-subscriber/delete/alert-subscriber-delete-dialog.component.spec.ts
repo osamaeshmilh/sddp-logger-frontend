@@ -6,14 +6,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 
 import { AlertSubscriberDeleteDialogComponent } from './alert-subscriber-delete-dialog.component';
 
 describe('AlertSubscriber Management Delete Component', () => {
   let comp: AlertSubscriberDeleteDialogComponent;
   let fixture: ComponentFixture<AlertSubscriberDeleteDialogComponent>;
-  let service: AlertSubscriberService;
+  let service: alert_subscriberservice;
   let mockActiveModal: NgbActiveModal;
 
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('AlertSubscriber Management Delete Component', () => {
       .compileComponents();
     fixture = TestBed.createComponent(AlertSubscriberDeleteDialogComponent);
     comp = fixture.componentInstance;
-    service = TestBed.inject(AlertSubscriberService);
+    service = TestBed.inject(alert_subscriberservice);
     mockActiveModal = TestBed.inject(NgbActiveModal);
   });
 

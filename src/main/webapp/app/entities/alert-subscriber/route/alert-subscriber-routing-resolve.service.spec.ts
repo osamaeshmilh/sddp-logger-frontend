@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
 import { IAlertSubscriber } from '../alert-subscriber.model';
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 
 import { AlertSubscriberRoutingResolveService } from './alert-subscriber-routing-resolve.service';
 
@@ -14,7 +14,7 @@ describe('AlertSubscriber routing resolve service', () => {
   let mockRouter: Router;
   let mockActivatedRouteSnapshot: ActivatedRouteSnapshot;
   let routingResolveService: AlertSubscriberRoutingResolveService;
-  let service: AlertSubscriberService;
+  let service: alert_subscriberservice;
   let resultAlertSubscriber: IAlertSubscriber | null | undefined;
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('AlertSubscriber routing resolve service', () => {
     jest.spyOn(mockRouter, 'navigate').mockImplementation(() => Promise.resolve(true));
     mockActivatedRouteSnapshot = TestBed.inject(ActivatedRoute).snapshot;
     routingResolveService = TestBed.inject(AlertSubscriberRoutingResolveService);
-    service = TestBed.inject(AlertSubscriberService);
+    service = TestBed.inject(alert_subscriberservice);
     resultAlertSubscriber = undefined;
   });
 

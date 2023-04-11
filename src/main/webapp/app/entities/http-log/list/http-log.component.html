@@ -40,31 +40,31 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="requestTimestamp">
+          <th scope="col" jhiSortBy="request_timestamp">
             <div class="d-flex">
               <span>Request Timestamp</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="httpMethod">
+          <th scope="col" jhiSortBy="http_method">
             <div class="d-flex">
               <span>Http Method</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="requestUrl">
+          <th scope="col" jhiSortBy="request_url">
             <div class="d-flex">
               <span>Request Url</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="httpStatusCode">
+          <th scope="col" jhiSortBy="http_status_code">
             <div class="d-flex">
               <span>Http Status Code</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="remoteIPAddress">
+          <th scope="col" jhiSortBy="remote_ip_address">
             <div class="d-flex">
               <span>Remote IP Address</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -76,43 +76,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="requestHeaders">
-            <div class="d-flex">
-              <span>Request Headers</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="responseHeaders">
-            <div class="d-flex">
-              <span>Response Headers</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="requestURLParameters">
-            <div class="d-flex">
-              <span>Request URL Parameters</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="requestBody">
-            <div class="d-flex">
-              <span>Request Body</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="requestCookies">
-            <div class="d-flex">
-              <span>Request Cookies</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="responseCookies">
-            <div class="d-flex">
-              <span>Response Cookies</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="application.code">
+          <th scope="col" jhiSortBy="application_id">
             <div class="d-flex">
               <span>Application</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -126,18 +90,12 @@
           <td>
             <a [routerLink]="['/http-log', httpLog.id, 'view']">{{ httpLog.id }}</a>
           </td>
-          <td>{{ httpLog.requestTimestamp | formatMediumDatetime }}</td>
-          <td>{{ httpLog.httpMethod }}</td>
-          <td>{{ httpLog.requestUrl }}</td>
-          <td>{{ httpLog.httpStatusCode }}</td>
-          <td>{{ httpLog.remoteIPAddress }}</td>
+          <td>{{ httpLog.request_timestamp | formatMediumDatetime }}</td>
+          <td>{{ httpLog.http_method }}</td>
+          <td>{{ httpLog.request_url }}</td>
+          <td>{{ httpLog.http_status_code }}</td>
+          <td>{{ httpLog.remote_ip_address }}</td>
           <td>{{ httpLog.duration }}</td>
-          <td>{{ httpLog.requestHeaders }}</td>
-          <td>{{ httpLog.responseHeaders }}</td>
-          <td>{{ httpLog.requestURLParameters }}</td>
-          <td>{{ httpLog.requestBody }}</td>
-          <td>{{ httpLog.requestCookies }}</td>
-          <td>{{ httpLog.responseCookies }}</td>
           <td>
             <div *ngIf="httpLog.application">
               <a [routerLink]="['/application', httpLog.application.id, 'view']">{{ httpLog.application.code }}</a>
@@ -155,17 +113,24 @@
                 <span class="d-none d-md-inline">View</span>
               </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/http-log', httpLog.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
+              <!--              <button-->
+              <!--                *jhiHasAnyAuthority="['ROLE_ADMIN']"-->
+              <!--                type="submit"-->
+              <!--                [routerLink]="['/http-log', httpLog.id, 'edit']"-->
+              <!--                class="btn btn-primary btn-sm"-->
+              <!--                data-cy="entityEditButton"-->
+              <!--              >-->
+              <!--                <fa-icon icon="pencil-alt"></fa-icon>-->
+              <!--                <span class="d-none d-md-inline">Edit</span>-->
+              <!--              </button>-->
 
-              <button type="submit" (click)="delete(httpLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="['ROLE_ADMIN']"
+                type="submit"
+                (click)="delete(httpLog)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>

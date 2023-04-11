@@ -4,14 +4,14 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { IAlertSubscriber } from '../alert-subscriber.model';
 import { sampleWithFullData, sampleWithNewData, sampleWithPartialData, sampleWithRequiredData } from '../alert-subscriber.test-samples';
 
-import { AlertSubscriberService } from './alert-subscriber.service';
+import { alert_subscriberservice } from './alert-subscriber.service';
 
 const requireRestSample: IAlertSubscriber = {
   ...sampleWithRequiredData,
 };
 
 describe('AlertSubscriber Service', () => {
-  let service: AlertSubscriberService;
+  let service: alert_subscriberservice;
   let httpMock: HttpTestingController;
   let expectedResult: IAlertSubscriber | IAlertSubscriber[] | boolean | null;
 
@@ -20,7 +20,7 @@ describe('AlertSubscriber Service', () => {
       imports: [HttpClientTestingModule],
     });
     expectedResult = null;
-    service = TestBed.inject(AlertSubscriberService);
+    service = TestBed.inject(alert_subscriberservice);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

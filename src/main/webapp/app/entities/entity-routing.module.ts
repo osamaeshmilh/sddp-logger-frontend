@@ -35,7 +35,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'alert-subscriber',
-        data: { pageTitle: 'AlertSubscribers' },
+        data: { pageTitle: 'alert_subscribers' },
         loadChildren: () => import('./alert-subscriber/alert-subscriber.module').then(m => m.AlertSubscriberModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */

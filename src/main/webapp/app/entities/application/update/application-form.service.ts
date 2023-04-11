@@ -14,15 +14,16 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type ApplicationFormGroupInput = IApplication | PartialWithRequiredKeyOf<NewApplication>;
 
-type ApplicationFormDefaults = Pick<NewApplication, 'id' | 'alertSubscribers'>;
+type ApplicationFormDefaults = Pick<NewApplication, 'id' | 'alert_subscribers'>;
 
 type ApplicationFormGroupContent = {
   id: FormControl<IApplication['id'] | NewApplication['id']>;
   name: FormControl<IApplication['name']>;
   code: FormControl<IApplication['code']>;
-  alertResponseCodes: FormControl<IApplication['alertResponseCodes']>;
+  description: FormControl<IApplication['description']>;
+  alert_response_codes: FormControl<IApplication['alert_response_codes']>;
   organization: FormControl<IApplication['organization']>;
-  alertSubscribers: FormControl<IApplication['alertSubscribers']>;
+  alert_subscribers: FormControl<IApplication['alert_subscribers']>;
 };
 
 export type ApplicationFormGroup = FormGroup<ApplicationFormGroupContent>;
@@ -48,11 +49,12 @@ export class ApplicationFormService {
       code: new FormControl(applicationRawValue.code, {
         validators: [Validators.required],
       }),
-      alertResponseCodes: new FormControl(applicationRawValue.alertResponseCodes),
+      description: new FormControl(applicationRawValue.code),
+      alert_response_codes: new FormControl(applicationRawValue.alert_response_codes),
       organization: new FormControl(applicationRawValue.organization, {
         validators: [Validators.required],
       }),
-      alertSubscribers: new FormControl(applicationRawValue.alertSubscribers ?? []),
+      alert_subscribers: new FormControl(applicationRawValue.alert_subscribers ?? []),
     });
   }
 
@@ -73,7 +75,7 @@ export class ApplicationFormService {
   private getFormDefaults(): ApplicationFormDefaults {
     return {
       id: null,
-      alertSubscribers: [],
+      alert_subscribers: [],
     };
   }
 }

@@ -21,7 +21,6 @@ function accountWithAuthorities(authorities: string[]): Account {
     first_name: '',
     langKey: '',
     last_name: '',
-    login: '',
     imageUrl: '',
   };
 }

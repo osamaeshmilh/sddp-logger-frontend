@@ -21,22 +21,13 @@ export class UserManagementUpdateComponent implements OnInit {
 
   editForm = new FormGroup({
     id: new FormControl(userTemplate.id),
-    login: new FormControl(userTemplate.login, {
-      nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(50),
-        Validators.pattern('^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$'),
-      ],
-    }),
     first_name: new FormControl(userTemplate.first_name, { validators: [Validators.maxLength(50)] }),
     last_name: new FormControl(userTemplate.last_name, { validators: [Validators.maxLength(50)] }),
     email: new FormControl(userTemplate.email, {
       nonNullable: true,
       validators: [Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
-    activated: new FormControl(userTemplate.activated, { nonNullable: true }),
+    // activated: new FormControl(userTemplate.activated, { nonNullable: true }),
     authorities: new FormControl(userTemplate.authorities, { nonNullable: true }),
   });
 

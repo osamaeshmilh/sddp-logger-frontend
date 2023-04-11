@@ -6,7 +6,7 @@ import { finalize, map } from 'rxjs/operators';
 
 import { AlertSubscriberFormGroup, AlertSubscriberFormService } from './alert-subscriber-form.service';
 import { IAlertSubscriber } from '../alert-subscriber.model';
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 import { IApplication } from 'app/entities/application/application.model';
 import { ApplicationService } from 'app/entities/application/service/application.service';
 
@@ -23,7 +23,7 @@ export class AlertSubscriberUpdateComponent implements OnInit {
   editForm: AlertSubscriberFormGroup = this.alertSubscriberFormService.createAlertSubscriberFormGroup();
 
   constructor(
-    protected alertSubscriberService: AlertSubscriberService,
+    protected alert_subscriberservice: alert_subscriberservice,
     protected alertSubscriberFormService: AlertSubscriberFormService,
     protected applicationService: ApplicationService,
     protected activatedRoute: ActivatedRoute
@@ -50,9 +50,9 @@ export class AlertSubscriberUpdateComponent implements OnInit {
     this.isSaving = true;
     const alertSubscriber = this.alertSubscriberFormService.getAlertSubscriber(this.editForm);
     if (alertSubscriber.id !== null) {
-      this.subscribeToSaveResponse(this.alertSubscriberService.update(alertSubscriber));
+      this.subscribeToSaveResponse(this.alert_subscriberservice.update(alertSubscriber));
     } else {
-      this.subscribeToSaveResponse(this.alertSubscriberService.create(alertSubscriber));
+      this.subscribeToSaveResponse(this.alert_subscriberservice.create(alertSubscriber));
     }
   }
 

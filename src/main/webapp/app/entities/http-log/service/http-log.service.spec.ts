@@ -8,7 +8,7 @@ import { HttpLogService, RestHttpLog } from './http-log.service';
 
 const requireRestSample: RestHttpLog = {
   ...sampleWithRequiredData,
-  requestTimestamp: sampleWithRequiredData.requestTimestamp?.toJSON(),
+  request_timestamp: sampleWithRequiredData.request_timestamp?.toJSON(),
 };
 
 describe('HttpLog Service', () => {

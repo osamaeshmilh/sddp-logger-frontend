@@ -10,7 +10,7 @@ import { AlertEventFormService } from './alert-event-form.service';
 import { AlertEventService } from '../service/alert-event.service';
 import { IAlertEvent } from '../alert-event.model';
 import { IAlertSubscriber } from 'app/entities/alert-subscriber/alert-subscriber.model';
-import { AlertSubscriberService } from 'app/entities/alert-subscriber/service/alert-subscriber.service';
+import { alert_subscriberservice } from 'app/entities/alert-subscriber/service/alert-subscriber.service';
 
 import { AlertEventUpdateComponent } from './alert-event-update.component';
 
@@ -20,7 +20,7 @@ describe('AlertEvent Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let alertEventFormService: AlertEventFormService;
   let alertEventService: AlertEventService;
-  let alertSubscriberService: AlertSubscriberService;
+  let alert_subscriberservice: alert_subscriberservice;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,7 +43,7 @@ describe('AlertEvent Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     alertEventFormService = TestBed.inject(AlertEventFormService);
     alertEventService = TestBed.inject(AlertEventService);
-    alertSubscriberService = TestBed.inject(AlertSubscriberService);
+    alert_subscriberservice = TestBed.inject(alert_subscriberservice);
 
     comp = fixture.componentInstance;
   });
@@ -55,20 +55,20 @@ describe('AlertEvent Management Update Component', () => {
       alertEvent.alertSubscriber = alertSubscriber;
 
       const alertSubscriberCollection: IAlertSubscriber[] = [{ id: 14423 }];
-      jest.spyOn(alertSubscriberService, 'query').mockReturnValue(of(new HttpResponse({ body: alertSubscriberCollection })));
-      const additionalAlertSubscribers = [alertSubscriber];
-      const expectedCollection: IAlertSubscriber[] = [...additionalAlertSubscribers, ...alertSubscriberCollection];
-      jest.spyOn(alertSubscriberService, 'addAlertSubscriberToCollectionIfMissing').mockReturnValue(expectedCollection);
+      jest.spyOn(alert_subscriberservice, 'query').mockReturnValue(of(new HttpResponse({ body: alertSubscriberCollection })));
+      const additionalalert_subscribers = [alertSubscriber];
+      const expectedCollection: IAlertSubscriber[] = [...additionalalert_subscribers, ...alertSubscriberCollection];
+      jest.spyOn(alert_subscriberservice, 'addAlertSubscriberToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ alertEvent });
       comp.ngOnInit();
 
-      expect(alertSubscriberService.query).toHaveBeenCalled();
-      expect(alertSubscriberService.addAlertSubscriberToCollectionIfMissing).toHaveBeenCalledWith(
+      expect(alert_subscriberservice.query).toHaveBeenCalled();
+      expect(alert_subscriberservice.addAlertSubscriberToCollectionIfMissing).toHaveBeenCalledWith(
         alertSubscriberCollection,
-        ...additionalAlertSubscribers.map(expect.objectContaining)
+        ...additionalalert_subscribers.map(expect.objectContaining)
       );
-      expect(comp.alertSubscribersSharedCollection).toEqual(expectedCollection);
+      expect(comp.alert_subscribersSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
@@ -79,7 +79,7 @@ describe('AlertEvent Management Update Component', () => {
       activatedRoute.data = of({ alertEvent });
       comp.ngOnInit();
 
-      expect(comp.alertSubscribersSharedCollection).toContain(alertSubscriber);
+      expect(comp.alert_subscribersSharedCollection).toContain(alertSubscriber);
       expect(comp.alertEvent).toEqual(alertEvent);
     });
   });
@@ -154,12 +154,12 @@ describe('AlertEvent Management Update Component', () => {
 
   describe('Compare relationships', () => {
     describe('compareAlertSubscriber', () => {
-      it('Should forward to alertSubscriberService', () => {
+      it('Should forward to alert_subscriberservice', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(alertSubscriberService, 'compareAlertSubscriber');
+        jest.spyOn(alert_subscriberservice, 'compareAlertSubscriber');
         comp.compareAlertSubscriber(entity, entity2);
-        expect(alertSubscriberService.compareAlertSubscriber).toHaveBeenCalledWith(entity, entity2);
+        expect(alert_subscriberservice.compareAlertSubscriber).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

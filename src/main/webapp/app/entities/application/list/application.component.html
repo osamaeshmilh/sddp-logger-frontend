@@ -52,7 +52,13 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="alertResponseCodes">
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span>Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="alert_response_codes">
             <div class="d-flex">
               <span>Alert Response Codes</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -74,7 +80,8 @@
           </td>
           <td>{{ application.name }}</td>
           <td>{{ application.code }}</td>
-          <td>{{ application.alertResponseCodes }}</td>
+          <td>{{ application.description }}</td>
+          <td>{{ application.alert_response_codes }}</td>
           <td>
             <div *ngIf="application.organization">
               <a [routerLink]="['/organization', application.organization.id, 'view']">{{ application.organization.code }}</a>
@@ -82,16 +89,34 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/alert-subscriber']"
-                [queryParams]="{ 'filter[applicationId.in]': application.id }"
-                class="btn btn-info btn-sm"
-                data-cy="filterOtherEntityButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">Show Alert Subscriber</span>
-              </button>
+              <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Filter</button>
+                <div ngbDropdownMenu aria-labelledby="dropdown1">
+                  <button
+                    ngbDropdownItem
+                    type="submit"
+                    [routerLink]="['/http-log']"
+                    [queryParams]="{ 'filter[q[application_id_eq]]': application.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Show Logs</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    type="submit"
+                    [routerLink]="['/alert-subscriber']"
+                    [queryParams]="{ 'filter[q[application_id_eq]]': application.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Show Subscribers</span>
+                  </button>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 [routerLink]="['/application', application.id, 'view']"

@@ -21,14 +21,29 @@
     <table class="table table-striped" aria-describedby="user-management-page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="login"><span>Login</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col"></th>
+          <th scope="col" jhiSortBy="id">
+            <span>ID</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span>Email</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="first_name">
+            <span>Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <!--          <th scope="col"></th>-->
           <th scope="col"><span>Profiles</span></th>
-          <th scope="col" jhiSortBy="createdDate"><span>Created date</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="lastModifiedBy"><span>Modified by</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="lastModifiedDate"><span>Modified date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="created_at">
+            <span>Created date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <!--          <th scope="col" jhiSortBy="lastModifiedBy"><span>Modified by</span> <fa-icon icon="sort"></fa-icon></th>-->
+          <th scope="col" jhiSortBy="updated_at">
+            <span>Modified date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -38,28 +53,29 @@
             <a [routerLink]="['./', user.email, 'view']">{{ user.id }}</a>
           </td>
           <td>{{ user.email }}</td>
+          <td>{{ user.first_name }}</td>
           <td>
-            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated">Deactivated</button>
-            <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated" [disabled]="!currentAccount">
-              Activated
-            </button>
+            <!--            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated">Deactivated</button>-->
+            <!--            <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated" [disabled]="!currentAccount">-->
+            <!--              Activated-->
+            <!--            </button>-->
           </td>
           <td>
             <div *ngFor="let authority of user.authorities">
               <span class="badge bg-info">{{ authority }}</span>
             </div>
           </td>
-          <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
-          <td>{{ user.lastModifiedBy }}</td>
-          <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
+          <td>{{ user.created_at | date: 'dd/MM/yy HH:mm' }}</td>
+          <!--          <td>{{ user.lastModifiedBy }}</td>-->
+          <td>{{ user.updated_at | date: 'dd/MM/yy HH:mm' }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['./', user.email, 'view']" class="btn btn-info btn-sm">
+              <button type="submit" [routerLink]="['./', user.id, 'view']" class="btn btn-info btn-sm">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['./', user.email, 'edit']" queryParamsHandling="merge" class="btn btn-primary btn-sm">
+              <button type="submit" [routerLink]="['./', user.id, 'edit']" queryParamsHandling="merge" class="btn btn-primary btn-sm">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>

@@ -9,24 +9,6 @@
         <label>ID</label>
         <input type="text" class="form-control" name="id" formControlName="id" readonly />
       </div>
-
-      <div class="mb-3">
-        <label class="form-label">Login</label>
-        <input type="text" class="form-control" name="login" formControlName="login" />
-
-        <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required"> This field is required. </small>
-
-          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.maxlength">
-            This field cannot be longer than 50 characters.
-          </small>
-
-          <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.pattern">
-            This field can only contain letters, digits and e-mail addresses.
-          </small>
-        </div>
-      </div>
-
       <div class="mb-3">
         <label class="form-label">First name</label>
         <input type="text" class="form-control" name="first_name" formControlName="first_name" />
@@ -68,19 +50,19 @@
         </div>
       </div>
 
-      <div class="form-check">
-        <label class="form-check-label" for="activated">
-          <input
-            class="form-check-input"
-            [attr.disabled]="editForm.value.id === undefined ? 'disabled' : null"
-            type="checkbox"
-            id="activated"
-            name="activated"
-            formControlName="activated"
-          />
-          <span>Activated</span>
-        </label>
-      </div>
+      <!--      <div class="form-check">-->
+      <!--        <label class="form-check-label" for="activated">-->
+      <!--          <input-->
+      <!--            class="form-check-input"-->
+      <!--            [attr.disabled]="editForm.value.id === undefined ? 'disabled' : null"-->
+      <!--            type="checkbox"-->
+      <!--            id="activated"-->
+      <!--            name="activated"-->
+      <!--            formControlName="activated"-->
+      <!--          />-->
+      <!--          <span>Activated</span>-->
+      <!--        </label>-->
+      <!--      </div>-->
 
       <div class="mb-3">
         <label>Profiles</label>

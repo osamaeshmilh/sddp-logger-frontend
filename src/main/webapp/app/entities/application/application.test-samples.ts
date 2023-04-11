@@ -16,7 +16,7 @@ export const sampleWithFullData: IApplication = {
   id: 73237,
   name: 'Assurance',
   code: 'Connecticut Pizza methodologies',
-  alertResponseCodes: 'alarm Malaysia rich',
+  alert_response_codes: 'alarm Malaysia rich',
 };
 
 export const sampleWithNewData: NewApplication = {

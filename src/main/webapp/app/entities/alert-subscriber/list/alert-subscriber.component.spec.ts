@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { AlertSubscriberService } from '../service/alert-subscriber.service';
+import { alert_subscriberservice } from '../service/alert-subscriber.service';
 
 import { AlertSubscriberComponent } from './alert-subscriber.component';
 import SpyInstance = jest.SpyInstance;
@@ -13,7 +13,7 @@ import SpyInstance = jest.SpyInstance;
 describe('AlertSubscriber Management Component', () => {
   let comp: AlertSubscriberComponent;
   let fixture: ComponentFixture<AlertSubscriberComponent>;
-  let service: AlertSubscriberService;
+  let service: alert_subscriberservice;
   let routerNavigateSpy: SpyInstance<Promise<boolean>>;
 
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('AlertSubscriber Management Component', () => {
 
     fixture = TestBed.createComponent(AlertSubscriberComponent);
     comp = fixture.componentInstance;
-    service = TestBed.inject(AlertSubscriberService);
+    service = TestBed.inject(alert_subscriberservice);
     routerNavigateSpy = jest.spyOn(comp.router, 'navigate');
 
     const headers = new HttpHeaders();
@@ -68,11 +68,11 @@ describe('AlertSubscriber Management Component', () => {
 
     // THEN
     expect(service.query).toHaveBeenCalled();
-    expect(comp.alertSubscribers?.[0]).toEqual(expect.objectContaining({ id: 123 }));
+    expect(comp.alert_subscribers?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 
   describe('trackId', () => {
-    it('Should forward to alertSubscriberService', () => {
+    it('Should forward to alert_subscriberservice', () => {
       const entity = { id: 123 };
       jest.spyOn(service, 'getAlertSubscriberIdentifier');
       const id = comp.trackId(0, entity);

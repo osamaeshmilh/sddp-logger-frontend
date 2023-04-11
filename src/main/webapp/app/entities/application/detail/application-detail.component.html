@@ -3,6 +3,11 @@
     <div *ngIf="application">
       <h2 data-cy="applicationDetailsHeading"><span>Application</span></h2>
 
+      <button type="button" (click)="regenerateToken()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="sync"></fa-icon>
+        &nbsp;<span>Regenerate Token</span>
+      </button>
+
       <hr />
 
       <jhi-alert-error></jhi-alert-error>
@@ -22,9 +27,13 @@
         <dd>
           <span>{{ application.code }}</span>
         </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ application.description }}</span>
+        </dd>
         <dt><span>Alert Response Codes</span></dt>
         <dd>
-          <span>{{ application.alertResponseCodes }}</span>
+          <span>{{ application.alert_response_codes }}</span>
         </dd>
         <dt><span>Organization</span></dt>
         <dd>
@@ -33,6 +42,27 @@
           </div>
         </dd>
       </dl>
+
+      <br />
+      <h5>Current Token</h5>
+      <br />
+
+      <div *ngIf="token">
+        <dl class="row jh-entity-details">
+          <dt><span>Expiry date</span></dt>
+          <dd>
+            <span>{{ token.expiry_date }}</span>
+          </dd>
+          <dt><span>Is Active</span></dt>
+          <dd>
+            <span>{{ token.is_active }}</span>
+          </dd>
+          <dt><span>Token</span></dt>
+          <dd>
+            <span>{{ token.access_token }}</span>
+          </dd>
+        </dl>
+      </div>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>

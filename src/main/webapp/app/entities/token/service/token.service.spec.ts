@@ -9,7 +9,7 @@ import { RestToken, TokenService } from './token.service';
 
 const requireRestSample: RestToken = {
   ...sampleWithRequiredData,
-  expiryDate: sampleWithRequiredData.expiryDate?.format(DATE_FORMAT),
+  expiry_date: sampleWithRequiredData.expiry_date?.format(DATE_FORMAT),
 };
 
 describe('Token Service', () => {

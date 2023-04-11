@@ -12,28 +12,28 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_requestTimestamp">Request Timestamp</label>
+          <label class="form-label" for="field_request_timestamp">Request Timestamp</label>
           <div class="d-flex">
             <input
-              id="field_requestTimestamp"
-              data-cy="requestTimestamp"
+              id="field_request_timestamp"
+              data-cy="request_timestamp"
               type="datetime-local"
               class="form-control"
-              name="requestTimestamp"
-              formControlName="requestTimestamp"
+              name="request_timestamp"
+              formControlName="request_timestamp"
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
           <div
             *ngIf="
-              editForm.get('requestTimestamp')!.invalid &&
-              (editForm.get('requestTimestamp')!.dirty || editForm.get('requestTimestamp')!.touched)
+              editForm.get('request_timestamp')!.invalid &&
+              (editForm.get('request_timestamp')!.dirty || editForm.get('request_timestamp')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('requestTimestamp')?.errors?.required">
+            <small class="form-text text-danger" *ngIf="editForm.get('request_timestamp')?.errors?.required">
               This field is required.
             </small>
-            <small class="form-text text-danger" [hidden]="!editForm.get('requestTimestamp')?.errors?.datetimelocal">
+            <small class="form-text text-danger" [hidden]="!editForm.get('request_timestamp')?.errors?.datetimelocal">
               This field should be a date and time.
             </small>
           </div>
@@ -41,12 +41,12 @@
 
         <div class="row mb-3">
           <label class="form-label" for="field_httpMethod">Http Method</label>
-          <select class="form-control" name="httpMethod" formControlName="httpMethod" id="field_httpMethod" data-cy="httpMethod">
+          <select class="form-control" name="http_method" formControlName="http_method" id="field_httpMethod" data-cy="http_method">
             <option [ngValue]="null"></option>
-            <option *ngFor="let httpMethod of httpMethodValues" [value]="httpMethod">httpMethod</option>
+            <option *ngFor="let http_method of httpMethodValues" [value]="http_method">{{ http_method }}</option>
           </select>
-          <div *ngIf="editForm.get('httpMethod')!.invalid && (editForm.get('httpMethod')!.dirty || editForm.get('httpMethod')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('httpMethod')?.errors?.required"> This field is required. </small>
+          <div *ngIf="editForm.get('http_method')!.invalid && (editForm.get('http_method')!.dirty || editForm.get('http_method')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('http_method')?.errors?.required"> This field is required. </small>
           </div>
         </div>
 
@@ -55,13 +55,13 @@
           <input
             type="text"
             class="form-control"
-            name="requestUrl"
+            name="request_url"
             id="field_requestUrl"
-            data-cy="requestUrl"
-            formControlName="requestUrl"
+            data-cy="request_url"
+            formControlName="request_url"
           />
-          <div *ngIf="editForm.get('requestUrl')!.invalid && (editForm.get('requestUrl')!.dirty || editForm.get('requestUrl')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('requestUrl')?.errors?.required"> This field is required. </small>
+          <div *ngIf="editForm.get('request_url')!.invalid && (editForm.get('request_url')!.dirty || editForm.get('request_url')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('request_url')?.errors?.required"> This field is required. </small>
           </div>
         </div>
 
@@ -69,20 +69,23 @@
           <label class="form-label" for="field_httpStatusCode">Http Status Code</label>
           <select
             class="form-control"
-            name="httpStatusCode"
-            formControlName="httpStatusCode"
+            name="http_status_code"
+            formControlName="http_status_code"
             id="field_httpStatusCode"
-            data-cy="httpStatusCode"
+            data-cy="http_status_code"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let httpStatusCode of httpStatusCodeValues" [value]="httpStatusCode">httpStatusCode</option>
+            <option *ngFor="let http_status_code of httpStatusCodeValues" [value]="http_status_code">{{ http_status_code }}</option>
           </select>
           <div
             *ngIf="
-              editForm.get('httpStatusCode')!.invalid && (editForm.get('httpStatusCode')!.dirty || editForm.get('httpStatusCode')!.touched)
+              editForm.get('http_status_code')!.invalid &&
+              (editForm.get('http_status_code')!.dirty || editForm.get('http_status_code')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('httpStatusCode')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('http_status_code')?.errors?.required">
+              This field is required.
+            </small>
           </div>
         </div>
 
@@ -91,18 +94,20 @@
           <input
             type="text"
             class="form-control"
-            name="remoteIPAddress"
+            name="remote_ip_address"
             id="field_remoteIPAddress"
-            data-cy="remoteIPAddress"
-            formControlName="remoteIPAddress"
+            data-cy="remote_ip_address"
+            formControlName="remote_ip_address"
           />
           <div
             *ngIf="
-              editForm.get('remoteIPAddress')!.invalid &&
-              (editForm.get('remoteIPAddress')!.dirty || editForm.get('remoteIPAddress')!.touched)
+              editForm.get('remote_ip_address')!.invalid &&
+              (editForm.get('remote_ip_address')!.dirty || editForm.get('remote_ip_address')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('remoteIPAddress')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('remote_ip_address')?.errors?.required">
+              This field is required.
+            </small>
           </div>
         </div>
 
@@ -122,17 +127,18 @@
           <input
             type="text"
             class="form-control"
-            name="requestHeaders"
+            name="request_headers"
             id="field_requestHeaders"
-            data-cy="requestHeaders"
-            formControlName="requestHeaders"
+            data-cy="request_headers"
+            formControlName="request_headers"
           />
           <div
             *ngIf="
-              editForm.get('requestHeaders')!.invalid && (editForm.get('requestHeaders')!.dirty || editForm.get('requestHeaders')!.touched)
+              editForm.get('request_headers')!.invalid &&
+              (editForm.get('request_headers')!.dirty || editForm.get('request_headers')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('requestHeaders')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('request_headers')?.errors?.required"> This field is required. </small>
           </div>
         </div>
 
@@ -141,18 +147,20 @@
           <input
             type="text"
             class="form-control"
-            name="responseHeaders"
+            name="response_headers"
             id="field_responseHeaders"
-            data-cy="responseHeaders"
-            formControlName="responseHeaders"
+            data-cy="response_headers"
+            formControlName="response_headers"
           />
           <div
             *ngIf="
-              editForm.get('responseHeaders')!.invalid &&
-              (editForm.get('responseHeaders')!.dirty || editForm.get('responseHeaders')!.touched)
+              editForm.get('response_headers')!.invalid &&
+              (editForm.get('response_headers')!.dirty || editForm.get('response_headers')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('responseHeaders')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('response_headers')?.errors?.required">
+              This field is required.
+            </small>
           </div>
         </div>
 
@@ -161,10 +169,10 @@
           <input
             type="text"
             class="form-control"
-            name="requestURLParameters"
+            name="request_url_parameters"
             id="field_requestURLParameters"
-            data-cy="requestURLParameters"
-            formControlName="requestURLParameters"
+            data-cy="request_url_parameters"
+            formControlName="request_url_parameters"
           />
         </div>
 
@@ -173,10 +181,10 @@
           <input
             type="text"
             class="form-control"
-            name="requestBody"
+            name="request_body"
             id="field_requestBody"
-            data-cy="requestBody"
-            formControlName="requestBody"
+            data-cy="request_body"
+            formControlName="request_body"
           />
         </div>
 
@@ -185,10 +193,10 @@
           <input
             type="text"
             class="form-control"
-            name="requestCookies"
+            name="request_cookies"
             id="field_requestCookies"
-            data-cy="requestCookies"
-            formControlName="requestCookies"
+            data-cy="request_cookies"
+            formControlName="request_cookies"
           />
         </div>
 
@@ -197,10 +205,10 @@
           <input
             type="text"
             class="form-control"
-            name="responseCookies"
+            name="response_cookies"
             id="field_responseCookies"
-            data-cy="responseCookies"
-            formControlName="responseCookies"
+            data-cy="response_cookies"
+            formControlName="response_cookies"
           />
         </div>
 

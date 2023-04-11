@@ -8,7 +8,7 @@ import { IAlertSubscriber } from '../alert-subscriber.model';
 
 import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
 import { ASC, DEFAULT_SORT_DATA, DESC, ITEM_DELETED_EVENT, SORT } from 'app/config/navigation.constants';
-import { AlertSubscriberService, EntityArrayResponseType } from '../service/alert-subscriber.service';
+import { alert_subscriberservice, EntityArrayResponseType } from '../service/alert-subscriber.service';
 import { AlertSubscriberDeleteDialogComponent } from '../delete/alert-subscriber-delete-dialog.component';
 import { FilterOptions, IFilterOption, IFilterOptions } from 'app/shared/filter/filter.model';
 
@@ -17,7 +17,7 @@ import { FilterOptions, IFilterOption, IFilterOptions } from 'app/shared/filter/
   templateUrl: './alert-subscriber.component.html',
 })
 export class AlertSubscriberComponent implements OnInit {
-  alertSubscribers?: IAlertSubscriber[];
+  alert_subscribers?: IAlertSubscriber[];
   isLoading = false;
 
   predicate = 'id';
@@ -29,13 +29,13 @@ export class AlertSubscriberComponent implements OnInit {
   page = 0;
 
   constructor(
-    protected alertSubscriberService: AlertSubscriberService,
+    protected alert_subscriberservice: alert_subscriberservice,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected modalService: NgbModal
   ) {}
 
-  trackId = (_index: number, item: IAlertSubscriber): number => this.alertSubscriberService.getAlertSubscriberIdentifier(item);
+  trackId = (_index: number, item: IAlertSubscriber): number => this.alert_subscriberservice.getAlertSubscriberIdentifier(item);
 
   ngOnInit(): void {
     this.load();
@@ -94,7 +94,7 @@ export class AlertSubscriberComponent implements OnInit {
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     this.fillComponentAttributesFromResponseHeader(response.headers);
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
-    this.alertSubscribers = dataFromBody;
+    this.alert_subscribers = dataFromBody;
   }
 
   protected fillComponentAttributesFromResponseBody(data: IAlertSubscriber[] | null): IAlertSubscriber[] {
@@ -122,7 +122,7 @@ export class AlertSubscriberComponent implements OnInit {
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;
     });
-    return this.alertSubscriberService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    return this.alert_subscriberservice.query(queryObject).pipe(tap(() => (this.isLoading = false)));
   }
 
   protected handleNavigation(page = this.page, predicate?: string, ascending?: boolean, filterOptions?: IFilterOption[]): void {
