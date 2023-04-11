@@ -128,6 +128,7 @@ export class OrganizationComponent implements OnInit {
       page: pageToLoad,
       size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
+      // "q[name_cont]": "ish",
     };
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;

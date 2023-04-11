@@ -31,6 +31,14 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
+    orgName: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+    }),
+    orgAddress: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+    }),
   });
 
   constructor(private registerService: RegisterService) {}
@@ -46,14 +54,12 @@ export class RegisterComponent implements AfterViewInit {
     this.error = false;
     this.errorEmailExists = false;
 
-    const { password, confirmPassword } = this.registerForm.getRawValue();
+    const { password, confirmPassword, email, orgName, orgAddress } = this.registerForm.getRawValue();
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
-      const { email } = this.registerForm.getRawValue();
-      const organisation_id = 1;
       this.registerService
-        .save({ email, password, organisation_id })
+        .save({ email, password, orgName, orgAddress })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }

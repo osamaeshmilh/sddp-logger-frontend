@@ -1,3 +1,3 @@
 export class Registration {
-  constructor(public email: string, public password: string, public organisation_id: number) {}
+  constructor(public email: string, public password: string, public orgName: string, public orgAddress: string) {}
 }

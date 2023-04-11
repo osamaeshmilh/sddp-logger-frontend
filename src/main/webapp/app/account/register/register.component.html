@@ -1,7 +1,7 @@
 <div>
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
-      <h1 data-cy="registerTitle">Registration</h1>
+      <h1 data-cy="registerTitle">Registration as an organization</h1>
 
       <div class="alert alert-success" *ngIf="success"><strong>Registration saved!</strong> Please check your email for confirmation.</div>
 
@@ -16,6 +16,65 @@
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+        <!-- Organization name field -->
+        <div class="mb-3">
+          <label class="form-label" for="orgName">Organization Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="orgName"
+            name="orgName"
+            placeholder="Organization name"
+            formControlName="orgName"
+            data-cy="orgName"
+          />
+          <!-- Validation messages for organization name field -->
+          <div *ngIf="registerForm.get('orgName')!.invalid && (registerForm.get('orgName')!.dirty || registerForm.get('orgName')!.touched)">
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.required">
+              Organization name is required.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.minlength">
+              Organization name is required to be at least 2 characters.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.maxlength">
+              Organization name cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+        <!-- Organization address field -->
+        <div class="mb-3">
+          <label class="form-label" for="orgAddress">Organization Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="orgAddress"
+            name="orgAddress"
+            placeholder="Organization address"
+            formControlName="orgAddress"
+            data-cy="orgAddress"
+          />
+          <!-- Validation messages for organization address field -->
+          <div
+            *ngIf="
+              registerForm.get('orgAddress')!.invalid && (registerForm.get('orgAddress')!.dirty || registerForm.get('orgAddress')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.required">
+              Organization address is required.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.minlength">
+              Organization address is required to be at least 2 characters.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.maxlength">
+              Organization address cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
         <div class="mb-3">
           <label class="form-label" for="email">Email</label>
           <input
