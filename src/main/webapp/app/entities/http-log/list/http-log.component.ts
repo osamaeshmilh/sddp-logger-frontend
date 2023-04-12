@@ -11,6 +11,7 @@ import { ASC, DEFAULT_SORT_DATA, DESC, ITEM_DELETED_EVENT, SORT } from 'app/conf
 import { EntityArrayResponseType, HttpLogService } from '../service/http-log.service';
 import { HttpLogDeleteDialogComponent } from '../delete/http-log-delete-dialog.component';
 import { FilterOptions, IFilterOption, IFilterOptions } from 'app/shared/filter/filter.model';
+import { HttpMethod } from '../../enumerations/http-method.model';
 
 @Component({
   selector: 'jhi-http-log',
@@ -27,6 +28,19 @@ export class HttpLogComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 0;
+  currentSearch = '';
+  startDate = '';
+  endDate = '';
+
+  httpMethodValues = Object.keys(HttpMethod);
+
+  data: any[] = [
+    { id: 1, date: '2022-01-01' },
+    { id: 2, date: '2022-01-05' },
+    { id: 3, date: '2022-01-10' },
+  ];
+
+  filteredData: any[] = [];
 
   constructor(
     protected httpLogService: HttpLogService,
@@ -73,6 +87,26 @@ export class HttpLogComponent implements OnInit {
 
   navigateToPage(page = this.page): void {
     this.handleNavigation(page, this.predicate, this.ascending, this.filters.filterOptions);
+  }
+
+  search(query: string): void {
+    if (query) {
+      this.predicate = 'id';
+      this.ascending = true;
+    }
+    this.page = 0;
+    this.currentSearch = query;
+    this.navigateToWithComponentValues();
+  }
+
+  filterByDateRange() {
+    this.filteredData = this.data.filter(item => {
+      const date = new Date(item.date);
+      const startDate = new Date(this.startDate);
+      const endDate = new Date(this.endDate);
+
+      return date >= startDate && date <= endDate;
+    });
   }
 
   protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
