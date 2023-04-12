@@ -14,13 +14,13 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type AlertEventFormGroupInput = IAlertEvent | PartialWithRequiredKeyOf<NewAlertEvent>;
 
-type AlertEventFormDefaults = Pick<NewAlertEvent, 'id' | 'isSent'>;
+type AlertEventFormDefaults = Pick<NewAlertEvent, 'id' | 'is_sent'>;
 
 type AlertEventFormGroupContent = {
   id: FormControl<IAlertEvent['id'] | NewAlertEvent['id']>;
   code: FormControl<IAlertEvent['code']>;
-  applicationCode: FormControl<IAlertEvent['applicationCode']>;
-  isSent: FormControl<IAlertEvent['isSent']>;
+  application_code: FormControl<IAlertEvent['application_code']>;
+  is_sent: FormControl<IAlertEvent['is_sent']>;
   alertSubscriber: FormControl<IAlertEvent['alertSubscriber']>;
 };
 
@@ -42,8 +42,8 @@ export class AlertEventFormService {
         }
       ),
       code: new FormControl(alertEventRawValue.code),
-      applicationCode: new FormControl(alertEventRawValue.applicationCode),
-      isSent: new FormControl(alertEventRawValue.isSent),
+      application_code: new FormControl(alertEventRawValue.application_code),
+      is_sent: new FormControl(alertEventRawValue.is_sent),
       alertSubscriber: new FormControl(alertEventRawValue.alertSubscriber, {
         validators: [Validators.required],
       }),
@@ -67,7 +67,7 @@ export class AlertEventFormService {
   private getFormDefaults(): AlertEventFormDefaults {
     return {
       id: null,
-      isSent: false,
+      is_sent: false,
     };
   }
 }

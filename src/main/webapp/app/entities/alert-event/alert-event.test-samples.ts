@@ -12,8 +12,8 @@ export const sampleWithPartialData: IAlertEvent = {
 export const sampleWithFullData: IAlertEvent = {
   id: 5714,
   code: 'Robust',
-  applicationCode: 'background users convergence',
-  isSent: false,
+  application_code: 'background users convergence',
+  is_sent: false,
 };
 
 export const sampleWithNewData: NewAlertEvent = {

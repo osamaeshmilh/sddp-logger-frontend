@@ -21,8 +21,8 @@ describe('AlertEvent Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             code: expect.any(Object),
-            applicationCode: expect.any(Object),
-            isSent: expect.any(Object),
+            application_code: expect.any(Object),
+            is_sent: expect.any(Object),
             alertSubscriber: expect.any(Object),
           })
         );
@@ -35,8 +35,8 @@ describe('AlertEvent Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             code: expect.any(Object),
-            applicationCode: expect.any(Object),
-            isSent: expect.any(Object),
+            application_code: expect.any(Object),
+            is_sent: expect.any(Object),
             alertSubscriber: expect.any(Object),
           })
         );

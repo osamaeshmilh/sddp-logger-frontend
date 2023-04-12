@@ -46,13 +46,13 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="applicationCode">
+          <th scope="col" jhiSortBy="application_code">
             <div class="d-flex">
               <span>Application Code</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="isSent">
+          <th scope="col" jhiSortBy="is_sent">
             <div class="d-flex">
               <span>Is Sent</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -73,8 +73,8 @@
             <a [routerLink]="['/alert-event', alertEvent.id, 'view']">{{ alertEvent.id }}</a>
           </td>
           <td>{{ alertEvent.code }}</td>
-          <td>{{ alertEvent.applicationCode }}</td>
-          <td>{{ alertEvent.isSent }}</td>
+          <td>{{ alertEvent.application_code }}</td>
+          <td>{{ alertEvent.is_sent }}</td>
           <td>
             <div *ngIf="alertEvent.alertSubscriber">
               <a [routerLink]="['/alert-subscriber', alertEvent.alertSubscriber.id, 'view']">{{ alertEvent.alertSubscriber.name }}</a>

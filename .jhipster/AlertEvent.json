@@ -11,11 +11,11 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "applicationCode",
+      "fieldName": "application_code",
       "fieldType": "String"
     },
     {
-      "fieldName": "isSent",
+      "fieldName": "is_sent",
       "fieldType": "Boolean"
     }
   ],
