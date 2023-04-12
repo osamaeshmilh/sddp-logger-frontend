@@ -1,16 +1,15 @@
 <div class="entity-container">
   <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
-    <div class="row white-bg">
-      <!--      <div class="mat-elevation-z1 p-3 round-card col-6">-->
-      <!--        <p>Reports</p>-->
-      <!--        <canvas [data]="specimenStatusDoughnutChartData" [labels]="specimenStatusDoughnutChartLabels" baseChart chartType="doughnut"></canvas>-->
+    <div class="row">
+      <div class="p-3 round-card col-6">
+        <p>Reports</p>
+        <canvas [data]="pieChartData" [labels]="pieChartLabels" baseChart chartType="pie"></canvas>
+      </div>
 
-      <!--      </div>-->
-
-      <!--      <div class="mat-elevation-z1 p-3 round-card col-6">-->
-      <!--        <p>Reports</p>-->
-      <!--        <canvas [data]="pieChartData" [labels]="pieChartLabels" baseChart chartType="pie"></canvas>-->
-      <!--      </div>-->
+      <div class="p-3 round-card col-6">
+        <p>Reports</p>
+        <canvas [data]="pieChartData" [labels]="pieChartLabels" baseChart chartType="pie"></canvas>
+      </div>
     </div>
 
     <div class="detail-row align-items-center mt-3">
