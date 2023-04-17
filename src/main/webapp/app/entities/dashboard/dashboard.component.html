@@ -1,40 +1,83 @@
 <div class="entity-container">
   <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
-    <div class="row">
+    <div class="row mt-4">
       <div class="p-3 round-card col-6">
-        <p>Reports</p>
-        <canvas [data]="pieChartData" [labels]="pieChartLabels" baseChart chartType="pie"></canvas>
+        <p>HTTP Logs by Method</p>
+        <div style="display: block">
+          <canvas baseChart chartType="pie" [data]="httpLogsByMethodData" [labels]="httpLogsByMethodLabels"> </canvas>
+        </div>
       </div>
-
       <div class="p-3 round-card col-6">
-        <p>Reports</p>
-        <canvas [data]="pieChartData" [labels]="pieChartLabels" baseChart chartType="pie"></canvas>
+        <p>HTTP Logs by Status Code</p>
+        <canvas [data]="httpLogsByStatusCodeData" [labels]="httpLogsByStatusCodeLabels" baseChart chartType="pie"></canvas>
       </div>
     </div>
 
-    <div class="detail-row align-items-center mt-3">
-      <div class="mat-elevation-z1 px-4 py-3 d-flex round-card col-3 white-bg">
-        <div class="d-flex flex-column">
-          <h3 class="m-0">{{ specimenCount }}</h3>
-          <p class="m-0">count</p>
-        </div>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>HTTP Logs by Application</h4>
+        <canvas [data]="httpLogsByApplicationData" [labels]="httpLogsByApplicationLabels" baseChart chartType="bar"></canvas>
       </div>
 
-      <span class="mx-2"></span>
+      <div class="col-md-6">
+        <h4>HTTP Logs by Organization</h4>
+        <canvas [data]="httpLogsByOrganizationData" [labels]="httpLogsByOrganizationLabels" baseChart chartType="bar"></canvas>
+      </div>
+    </div>
 
-      <div class="mat-elevation-z1 px-4 py-3 d-flex round-card col-3 white-bg">
-        <div class="d-flex flex-column">
-          <h3 class="m-0">{{ doctorCount }}</h3>
-          <p class="m-0">count</p>
-        </div>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h4>Alert Events Over Time</h4>
+        <canvas [data]="alertEventsOverTimeData" [labels]="alertEventsOverTimeLabels" baseChart chartType="line"></canvas>
       </div>
 
-      <span class="mx-2"></span>
-      <div class="mat-elevation-z1 px-4 py-3 d-flex round-card col-3 white-bg">
-        <div class="d-flex flex-column">
-          <h3 class="m-0">{{ referringCenterCount }}</h3>
-          <p class="m-0">count</p>
-        </div>
+      <div class="col-md-6">
+        <h4>Alert Events by Application</h4>
+        <canvas [data]="alertEventsByApplicationData" [labels]="alertEventsByApplicationLabels" baseChart chartType="pie"></canvas>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h4>Top 10 Slowest Requests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>HTTP Method</th>
+            <th>Request URL</th>
+            <th>Duration</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of topTenSlowestRequests">
+            <td>{{ request.http_method }}</td>
+            <td>{{ request.request_url }}</td>
+            <td>{{ request.duration }}</td>
+            <td>{{ request.request_timestamp | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md">
+        <h3 class="m-0">{{ httpLogsTotal }}</h3>
+        <p class="m-0">Total HTTP Logs</p>
+      </div>
+
+      <div class="col-md">
+        <h3 class="m-0">{{ httpLogsLast24Hours }}</h3>
+        <p class="m-0">Last 24 Hours</p>
+      </div>
+
+      <div class="col-md">
+        <h3 class="m-0">{{ httpLogsLast7Days }}</h3>
+        <p class="m-0">Last 7 Days</p>
+      </div>
+
+      <div class="col-md">
+        <h3 class="m-0">{{ httpLogsLast30Days }}</h3>
+        <p class="m-0">Last 30 Days</p>
       </div>
     </div>
   </div>

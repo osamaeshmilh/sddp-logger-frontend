@@ -1,73 +1,104 @@
 import { Component } from '@angular/core';
+import { DashboardService } from './dashboard.service';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'jhi-dashboard',
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
-  public specimenStatusDoughnutChartLabels = [
-    'RECEIVED',
-    'GROSSING',
-    'PROCESSING',
-    'EMBEDDING',
-    'CUTTING',
-    'STAINING',
-    'DIAGNOSING',
-    'TYPING',
-    'REVISION',
-    'READY',
-  ];
-  public specimenStatusDoughnutChartData: any;
-  public specimenStatusData: Array<any> = [];
+  httpLogsTotal = 0;
+  httpLogsLast24Hours = 0;
+  httpLogsLast7Days = 0;
+  httpLogsLast30Days = 0;
 
-  public pieChartLabels = ['RECEIVED', 'RECEIVED', 'RECEIVED', 'RECEIVED'];
-  public pieChartData = [43, 54, 65, 33];
+  public httpLogsByMethodLabels: Label[] = [];
+  public httpLogsByMethodData: number[] = [];
 
-  specimenCount: any;
-  doctorCount: any;
-  referringCenterCount: any;
+  public httpLogsByStatusCodeLabels: Label[] = [];
+  public httpLogsByStatusCodeData: number[] = [];
 
-  // constructor(
-  //   private specimenService: SpecimenService,
-  //   private doctorService: DoctorService,
-  //   private referringCenterService: ReferringCenterService
-  // ) {
-  // }
+  public httpLogsByApplicationLabels: Label[] = [];
+  public httpLogsByApplicationData: number[] = [];
 
-  // ngOnInit(): void {
-  //   this.specimenService.count().subscribe((res: any) => {
-  //     this.specimenCount = res.body;
-  //   });
-  //   this.doctorService.count().subscribe((res: any) => {
-  //     this.doctorCount = res.body;
-  //   });
-  //   this.referringCenterService.count().subscribe((res: any) => {
-  //     this.referringCenterCount = res.body;
-  //   });
-  //
-  //   forkJoin([
-  //     this.specimenService.count({'specimenStatus.equals': 'RECEIVED'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'GROSSING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'PROCESSING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'EMBEDDING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'CUTTING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'STAINING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'DIAGNOSING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'TYPING'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'REVISION'}),
-  //     this.specimenService.count({'specimenStatus.equals': 'READY'}),
-  //   ]).subscribe(data => {
-  //     this.specimenStatusData.push(data[0].body);
-  //     this.specimenStatusData.push(data[1].body);
-  //     this.specimenStatusData.push(data[2].body);
-  //     this.specimenStatusData.push(data[3].body);
-  //     this.specimenStatusData.push(data[4].body);
-  //     this.specimenStatusData.push(data[5].body);
-  //     this.specimenStatusData.push(data[6].body);
-  //     this.specimenStatusData.push(data[7].body);
-  //     this.specimenStatusData.push(data[8].body);
-  //     this.specimenStatusData.push(data[9].body);
-  //     this.specimenStatusDoughnutChartData = this.specimenStatusData;
-  //   });
-  // }
+  public httpLogsByOrganizationLabels: Label[] = [];
+  public httpLogsByOrganizationData: number[] = [];
+
+  public alertEventsOverTimeLabels: Label[] = [];
+  public alertEventsOverTimeData: number[] = [];
+
+  public alertEventsByApplicationLabels: Label[] = [];
+  public alertEventsByApplicationData: number[] = [];
+
+  public topTenSlowestRequests: any[] = [];
+
+  constructor(private dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.fetchHttpLogsByMethod();
+    this.fetchHttpLogsByTimeframe();
+    this.fetchHttpLogsByStatusCode();
+    this.fetchHttpLogsByApplication();
+    this.fetchHttpLogsByOrganization();
+    this.fetchAlertEventsOverTime();
+    this.fetchAlertEventsByApplication();
+    this.fetchTopTenSlowestRequests();
+  }
+
+  fetchHttpLogsByMethod(): void {
+    this.dashboardService.httpLogsByMethod().subscribe(data => {
+      this.httpLogsByMethodData = Object.values(data);
+      this.httpLogsByMethodLabels = Object.keys(data);
+    });
+  }
+
+  fetchHttpLogsByTimeframe(): void {
+    this.dashboardService.httpLogsByTimeframe().subscribe(data => {
+      this.httpLogsTotal = data.total;
+      this.httpLogsLast24Hours = data.last_24_hours;
+      this.httpLogsLast7Days = data.last_7_days;
+      this.httpLogsLast30Days = data.last_30_days;
+    });
+  }
+
+  fetchHttpLogsByStatusCode(): void {
+    this.dashboardService.httpLogsByStatusCode().subscribe(data => {
+      this.httpLogsByStatusCodeData = Object.values(data);
+      this.httpLogsByStatusCodeLabels = Object.keys(data);
+    });
+  }
+
+  fetchHttpLogsByApplication(): void {
+    this.dashboardService.httpLogsByApplication().subscribe(data => {
+      this.httpLogsByApplicationData = Object.values(data);
+      this.httpLogsByApplicationLabels = Object.keys(data);
+    });
+  }
+
+  fetchHttpLogsByOrganization(): void {
+    this.dashboardService.httpLogsByOrganization().subscribe(data => {
+      this.httpLogsByOrganizationData = Object.values(data);
+      this.httpLogsByOrganizationLabels = Object.keys(data);
+    });
+  }
+
+  fetchAlertEventsOverTime(): void {
+    this.dashboardService.alertEventsOverTime().subscribe(data => {
+      this.alertEventsOverTimeData = Object.values(data);
+      this.alertEventsOverTimeLabels = Object.keys(data);
+    });
+  }
+
+  fetchAlertEventsByApplication(): void {
+    this.dashboardService.alertEventsByApplication().subscribe(data => {
+      this.alertEventsByApplicationData = Object.values(data);
+      this.alertEventsByApplicationLabels = Object.keys(data);
+    });
+  }
+
+  fetchTopTenSlowestRequests(): void {
+    this.dashboardService.topTenSlowestRequests().subscribe(data => {
+      this.topTenSlowestRequests = data;
+    });
+  }
 }
