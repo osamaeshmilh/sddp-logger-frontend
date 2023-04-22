@@ -1,18 +1,18 @@
 <div>
-  <h2 id="page-heading" data-cy="ApplicationHeading">
+  <h2 data-cy="ApplicationHeading" id="page-heading">
     <span>Applications</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <button (click)="load()" [disabled]="isLoading" class="btn btn-info me-2">
+        <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
 
       <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-application"
         [routerLink]="['/application/new']"
+        class="btn btn-primary jh-create-entity create-application"
+        data-cy="entityCreateButton"
+        id="jh-create-entity"
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Application </span>
@@ -26,45 +26,45 @@
 
   <jhi-filter [filters]="filters"></jhi-filter>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="applications?.length === 0">
+  <div *ngIf="applications?.length === 0" class="alert alert-warning" id="no-result">
     <span>No Applications found</span>
   </div>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="applications && applications.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+  <div *ngIf="applications && applications.length > 0" class="table-responsive table-entities" id="entities">
+    <table aria-describedby="page-heading" class="table table-striped">
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+        <tr (sortChange)="navigateToWithComponentValues()" [(ascending)]="ascending" [(predicate)]="predicate" jhiSort>
+          <th jhiSortBy="id" scope="col">
             <div class="d-flex">
               <span>ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="name">
+          <th jhiSortBy="name" scope="col">
             <div class="d-flex">
               <span>Name</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="code">
+          <th jhiSortBy="code" scope="col">
             <div class="d-flex">
               <span>Code</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="description">
+          <th jhiSortBy="description" scope="col">
             <div class="d-flex">
               <span>Description</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="alert_response_codes">
+          <th jhiSortBy="alert_response_codes" scope="col">
             <div class="d-flex">
               <span>Alert Response Codes</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="organization.code">
+          <th jhiSortBy="organization.code" scope="col">
             <div class="d-flex">
               <span>Organization</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -89,27 +89,27 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
-              <div ngbDropdown class="d-inline-block">
-                <button type="button" class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Filter</button>
-                <div ngbDropdownMenu aria-labelledby="dropdown1">
+              <div class="d-inline-block" ngbDropdown>
+                <button class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle type="button">Filter</button>
+                <div aria-labelledby="dropdown1" ngbDropdownMenu>
                   <button
-                    ngbDropdownItem
-                    type="submit"
-                    [routerLink]="['/http-log']"
                     [queryParams]="{ 'filter[q[application_id_eq]]': application.id }"
+                    [routerLink]="['/http-log']"
                     class="btn btn-info btn-sm"
                     data-cy="filterOtherEntityButton"
+                    ngbDropdownItem
+                    type="submit"
                   >
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline">Show Logs</span>
                   </button>
                   <button
-                    ngbDropdownItem
-                    type="submit"
-                    [routerLink]="['/alert-subscriber']"
                     [queryParams]="{ 'filter[q[application_id_eq]]': application.id }"
+                    [routerLink]="['/alert-subscriber']"
                     class="btn btn-info btn-sm"
                     data-cy="filterOtherEntityButton"
+                    ngbDropdownItem
+                    type="submit"
                   >
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline">Show Subscribers</span>
@@ -118,26 +118,26 @@
               </div>
 
               <button
-                type="submit"
                 [routerLink]="['/application', application.id, 'view']"
                 class="btn btn-info btn-sm"
                 data-cy="entityDetailsButton"
+                type="submit"
               >
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
 
               <button
-                type="submit"
                 [routerLink]="['/application', application.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
+                type="submit"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
 
-              <button type="submit" (click)="delete(application)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button (click)="delete(application)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton" type="submit">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
@@ -155,13 +155,13 @@
 
     <div class="d-flex justify-content-center">
       <ngb-pagination
-        [collectionSize]="totalItems"
-        [page]="page"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
         (pageChange)="navigateToPage($event)"
+        [boundaryLinks]="true"
+        [collectionSize]="totalItems"
+        [maxSize]="5"
+        [pageSize]="itemsPerPage"
+        [page]="page"
+        [rotate]="true"
       ></ngb-pagination>
     </div>
   </div>

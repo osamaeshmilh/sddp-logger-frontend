@@ -31,11 +31,11 @@
         </dd>
       </dl>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+      <button (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton" type="submit">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
       </button>
 
-      <button type="button" [routerLink]="['/alert-subscriber', alertSubscriber.id, 'edit']" class="btn btn-primary">
+      <button [routerLink]="['/alert-subscriber', alertSubscriber.id, 'edit']" class="btn btn-primary" type="button">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
       </button>
     </div>

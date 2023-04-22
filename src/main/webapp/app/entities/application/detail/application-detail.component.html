@@ -3,7 +3,7 @@
     <div *ngIf="application">
       <h2 data-cy="applicationDetailsHeading"><span>Application</span></h2>
 
-      <button type="button" (click)="regenerateToken()" class="btn btn-info" data-cy="entityDetailsBackButton">
+      <button (click)="regenerateToken()" class="btn btn-info" data-cy="entityDetailsBackButton" type="button">
         <fa-icon icon="sync"></fa-icon>
         &nbsp;<span>Regenerate Token</span>
       </button>
@@ -64,11 +64,11 @@
         </dl>
       </div>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+      <button (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton" type="submit">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
       </button>
 
-      <button type="button" [routerLink]="['/application', application.id, 'edit']" class="btn btn-primary">
+      <button [routerLink]="['/application', application.id, 'edit']" class="btn btn-primary" type="button">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
       </button>
     </div>

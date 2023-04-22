@@ -5,13 +5,13 @@
     <p class="lead">This is your homepage</p>
 
     <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.first_name }}".</span>
+      <div *ngSwitchCase="true" class="alert alert-success">
+        <span *ngIf="account" id="home-logged-message">You are logged in as user "{{ account.first_name }}".</span>
       </div>
 
-      <div class="alert alert-warning" *ngSwitchCase="false">
+      <div *ngSwitchCase="false" class="alert alert-warning">
         <span>If you want to </span>
-        <a class="alert-link" (click)="login()">sign in</a
+        <a (click)="login()" class="alert-link">sign in</a
         ><span
           >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
           password="user").</span

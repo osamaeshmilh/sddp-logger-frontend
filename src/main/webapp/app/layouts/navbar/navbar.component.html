@@ -1,26 +1,26 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav class="navbar navbar-dark navbar-expand-md bg-dark" data-cy="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+    <a (click)="collapseNavbar()" class="navbar-brand logo" routerLink="/">
       <span class="logo-img"></span>
       <span class="navbar-title">Log Management System</span>
       <span class="navbar-version">{{ version }}</span>
     </a>
     <a
-      class="navbar-toggler d-lg-none"
-      href="javascript:void(0);"
-      data-toggle="collapse"
-      data-target="#navbarResponsive"
+      (click)="toggleNavbar()"
       aria-controls="navbarResponsive"
       aria-expanded="false"
       aria-label="Toggle navigation"
-      (click)="toggleNavbar()"
+      class="navbar-toggler d-lg-none"
+      data-target="#navbarResponsive"
+      data-toggle="collapse"
+      href="javascript:void(0);"
     >
       <fa-icon icon="bars"></fa-icon>
     </a>
-    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
+    <div [ngSwitch]="account !== null" [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+        <li [routerLinkActiveOptions]="{ exact: true }" class="nav-item" routerLinkActive="active">
+          <a (click)="collapseNavbar()" class="nav-link" routerLink="/">
             <span>
               <fa-icon icon="home"></fa-icon>
               <span>Home</span>
@@ -30,78 +30,78 @@
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
           *ngSwitchCase="true"
-          ngbDropdown
+          [routerLinkActiveOptions]="{ exact: true }"
           class="nav-item dropdown pointer"
           display="dynamic"
+          ngbDropdown
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+          <a class="nav-link dropdown-toggle" data-cy="entity" href="javascript:void(0);" id="entity-menu" ngbDropdownToggle>
             <span>
               <fa-icon icon="th-list"></fa-icon>
               <span>Entities</span>
             </span>
           </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+          <ul aria-labelledby="entity-menu" class="dropdown-menu" ngbDropdownMenu>
             <li>
               <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="dropdown-item"
                 routerLink="dashboard"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
               >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
                 <span>Dashboard</span>
               </a>
             </li>
 
             <li *jhiHasAnyAuthority="['ROLE_ORGANIZATION_ADMIN', 'ROLE_ADMIN']">
               <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="dropdown-item"
                 routerLink="application"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
               >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
                 <span>Application</span>
               </a>
             </li>
             <li *jhiHasAnyAuthority="['ROLE_ADMIN']">
               <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="dropdown-item"
                 routerLink="organization"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
               >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
                 <span>Organization</span>
               </a>
             </li>
             <li>
               <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="dropdown-item"
                 routerLink="http-log"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
               >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
                 <span>Http Log</span>
               </a>
             </li>
 
             <li *jhiHasAnyAuthority="['ROLE_ORGANIZATION_ADMIN', 'ROLE_ADMIN']">
               <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="dropdown-item"
                 routerLink="alert-subscriber"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
               >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
                 <span>Alert Subscriber</span>
               </a>
             </li>
@@ -110,28 +110,28 @@
         </li>
         <li
           *jhiHasAnyAuthority="['ROLE_ORGANIZATION_ADMIN', 'ROLE_ADMIN']"
-          ngbDropdown
+          [routerLinkActiveOptions]="{ exact: true }"
           class="nav-item dropdown pointer"
           display="dynamic"
+          ngbDropdown
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
+          <a class="nav-link dropdown-toggle" data-cy="adminMenu" href="javascript:void(0);" id="admin-menu" ngbDropdownToggle>
             <span>
               <fa-icon icon="users-cog"></fa-icon>
               <span>Administration</span>
             </span>
           </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+          <ul aria-labelledby="admin-menu" class="dropdown-menu" ngbDropdownMenu>
             <li>
-              <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+              <a (click)="collapseNavbar()" class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active">
+                <fa-icon [fixedWidth]="true" icon="users"></fa-icon>
                 <span>User management</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+              <a (click)="collapseNavbar()" class="dropdown-item" routerLink="admin/docs" routerLinkActive="active">
+                <fa-icon [fixedWidth]="true" icon="book"></fa-icon>
                 <span>API</span>
               </a>
             </li>
@@ -139,67 +139,67 @@
           </ul>
         </li>
         <li
-          ngbDropdown
+          [routerLinkActiveOptions]="{ exact: true }"
           class="nav-item dropdown pointer"
           display="dynamic"
+          ngbDropdown
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
+          <a class="nav-link dropdown-toggle" data-cy="accountMenu" href="javascript:void(0);" id="account-menu" ngbDropdownToggle>
             <span *ngIf="!account?.imageUrl">
               <fa-icon icon="user"></fa-icon>
               <span>Account</span>
             </span>
             <span *ngIf="account?.imageUrl">
-              <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />
+              <img [src]="account!.imageUrl" alt="Avatar" class="profile-image rounded-circle" />
             </span>
           </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+          <ul aria-labelledby="account-menu" class="dropdown-menu" ngbDropdownMenu>
             <li *ngSwitchCase="true">
               <a
+                (click)="collapseNavbar()"
                 class="dropdown-item"
+                data-cy="settings"
                 routerLink="account/settings"
                 routerLinkActive="active"
-                (click)="collapseNavbar()"
-                data-cy="settings"
               >
-                <fa-icon icon="wrench" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="wrench"></fa-icon>
                 <span>Settings</span>
               </a>
             </li>
             <li *ngSwitchCase="true">
               <a
+                (click)="collapseNavbar()"
                 class="dropdown-item"
+                data-cy="passwordItem"
                 routerLink="account/password"
                 routerLinkActive="active"
-                (click)="collapseNavbar()"
-                data-cy="passwordItem"
               >
-                <fa-icon icon="lock" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="lock"></fa-icon>
                 <span>Password</span>
               </a>
             </li>
             <li *ngSwitchCase="true">
-              <a class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
-                <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
+              <a (click)="logout()" class="dropdown-item" data-cy="logout" id="logout">
+                <fa-icon [fixedWidth]="true" icon="sign-out-alt"></fa-icon>
                 <span>Sign out</span>
               </a>
             </li>
             <li *ngSwitchCase="false">
-              <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
-                <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
+              <a (click)="login()" class="dropdown-item" data-cy="login" id="login">
+                <fa-icon [fixedWidth]="true" icon="sign-in-alt"></fa-icon>
                 <span>Sign in</span>
               </a>
             </li>
             <li *ngSwitchCase="false">
               <a
+                (click)="collapseNavbar()"
                 class="dropdown-item"
+                data-cy="register"
                 routerLink="account/register"
                 routerLinkActive="active"
-                (click)="collapseNavbar()"
-                data-cy="register"
               >
-                <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
+                <fa-icon [fixedWidth]="true" icon="user-plus"></fa-icon>
                 <span>Register</span>
               </a>
             </li>

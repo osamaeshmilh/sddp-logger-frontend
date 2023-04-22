@@ -3,42 +3,42 @@
     <div class="col-md-8">
       <h1 data-cy="registerTitle">Registration as an organization</h1>
 
-      <div class="alert alert-success" *ngIf="success"><strong>Registration saved!</strong> Please check your email for confirmation.</div>
+      <div *ngIf="success" class="alert alert-success"><strong>Registration saved!</strong> Please check your email for confirmation.</div>
 
-      <div class="alert alert-danger" *ngIf="error"><strong>Registration failed!</strong> Please try again later.</div>
+      <div *ngIf="error" class="alert alert-danger"><strong>Registration failed!</strong> Please try again later.</div>
 
-      <div class="alert alert-danger" *ngIf="errorEmailExists"><strong>Email is already in use!</strong> Please choose another one.</div>
+      <div *ngIf="errorEmailExists" class="alert alert-danger"><strong>Email is already in use!</strong> Please choose another one.</div>
 
-      <div class="alert alert-danger" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
+      <div *ngIf="doNotMatch" class="alert alert-danger">The password and its confirmation do not match!</div>
     </div>
   </div>
 
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
-      <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+      <form (ngSubmit)="register()" *ngIf="!success" [formGroup]="registerForm" name="form" role="form">
         <!-- Organization name field -->
         <div class="mb-3">
           <label class="form-label" for="orgName">Organization Name</label>
           <input
-            type="text"
             class="form-control"
+            data-cy="orgName"
+            formControlName="orgName"
             id="orgName"
             name="orgName"
             placeholder="Organization name"
-            formControlName="orgName"
-            data-cy="orgName"
+            type="text"
           />
           <!-- Validation messages for organization name field -->
           <div *ngIf="registerForm.get('orgName')!.invalid && (registerForm.get('orgName')!.dirty || registerForm.get('orgName')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.required">
+            <small *ngIf="registerForm.get('orgName')?.errors?.required" class="form-text text-danger">
               Organization name is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.minlength">
+            <small *ngIf="registerForm.get('orgName')?.errors?.minlength" class="form-text text-danger">
               Organization name is required to be at least 2 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgName')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('orgName')?.errors?.maxlength" class="form-text text-danger">
               Organization name cannot be longer than 50 characters.
             </small>
           </div>
@@ -47,13 +47,13 @@
         <div class="mb-3">
           <label class="form-label" for="orgAddress">Organization Address</label>
           <input
-            type="text"
             class="form-control"
+            data-cy="orgAddress"
+            formControlName="orgAddress"
             id="orgAddress"
             name="orgAddress"
             placeholder="Organization address"
-            formControlName="orgAddress"
-            data-cy="orgAddress"
+            type="text"
           />
           <!-- Validation messages for organization address field -->
           <div
@@ -61,15 +61,15 @@
               registerForm.get('orgAddress')!.invalid && (registerForm.get('orgAddress')!.dirty || registerForm.get('orgAddress')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.required">
+            <small *ngIf="registerForm.get('orgAddress')?.errors?.required" class="form-text text-danger">
               Organization address is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.minlength">
+            <small *ngIf="registerForm.get('orgAddress')?.errors?.minlength" class="form-text text-danger">
               Organization address is required to be at least 2 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgAddress')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('orgAddress')?.errors?.maxlength" class="form-text text-danger">
               Organization address cannot be longer than 50 characters.
             </small>
           </div>
@@ -79,25 +79,25 @@
         <div class="mb-3">
           <label class="form-label" for="orgName">Organization Code</label>
           <input
-            type="text"
             class="form-control"
+            data-cy="orgCode"
+            formControlName="orgCode"
             id="orgCode"
             name="orgCode"
             placeholder="Organization Code"
-            formControlName="orgCode"
-            data-cy="orgCode"
+            type="text"
           />
           <!-- Validation messages for organization code field -->
           <div *ngIf="registerForm.get('orgCode')!.invalid && (registerForm.get('orgCode')!.dirty || registerForm.get('orgCode')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgCode')?.errors?.required">
+            <small *ngIf="registerForm.get('orgCode')?.errors?.required" class="form-text text-danger">
               Organization code is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgCode')?.errors?.minlength">
+            <small *ngIf="registerForm.get('orgCode')?.errors?.minlength" class="form-text text-danger">
               Organization code is required to be at least 2 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('orgCode')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('orgCode')?.errors?.maxlength" class="form-text text-danger">
               Organization code cannot be longer than 10 characters.
             </small>
           </div>
@@ -106,25 +106,25 @@
         <div class="mb-3">
           <label class="form-label" for="email">Email</label>
           <input
-            type="email"
             class="form-control"
+            data-cy="email"
+            formControlName="email"
             id="email"
             name="email"
             placeholder="Your email"
-            formControlName="email"
-            data-cy="email"
+            type="email"
           />
 
           <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Your email is required. </small>
+            <small *ngIf="registerForm.get('email')?.errors?.required" class="form-text text-danger"> Your email is required. </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Your email is invalid. </small>
+            <small *ngIf="registerForm.get('email')?.errors?.invalid" class="form-text text-danger"> Your email is invalid. </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.minlength">
+            <small *ngIf="registerForm.get('email')?.errors?.minlength" class="form-text text-danger">
               Your email is required to be at least 5 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('email')?.errors?.maxlength" class="form-text text-danger">
               Your email cannot be longer than 50 characters.
             </small>
           </div>
@@ -133,25 +133,25 @@
         <div class="mb-3">
           <label class="form-label" for="password">New password</label>
           <input
-            type="password"
             class="form-control"
+            data-cy="firstPassword"
+            formControlName="password"
             id="password"
             name="password"
             placeholder="New password"
-            formControlName="password"
-            data-cy="firstPassword"
+            type="password"
           />
 
           <div
             *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required"> Your password is required. </small>
+            <small *ngIf="registerForm.get('password')?.errors?.required" class="form-text text-danger"> Your password is required. </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
+            <small *ngIf="registerForm.get('password')?.errors?.minlength" class="form-text text-danger">
               Your password is required to be at least 4 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('password')?.errors?.maxlength" class="form-text text-danger">
               Your password cannot be longer than 50 characters.
             </small>
           </div>
@@ -162,13 +162,13 @@
         <div class="mb-3">
           <label class="form-label" for="confirmPassword">New password confirmation</label>
           <input
-            type="password"
             class="form-control"
+            data-cy="secondPassword"
+            formControlName="confirmPassword"
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Confirm the new password"
-            formControlName="confirmPassword"
-            data-cy="secondPassword"
+            type="password"
           />
 
           <div
@@ -177,21 +177,21 @@
               (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+            <small *ngIf="registerForm.get('confirmPassword')?.errors?.required" class="form-text text-danger">
               Your confirmation password is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
+            <small *ngIf="registerForm.get('confirmPassword')?.errors?.minlength" class="form-text text-danger">
               Your confirmation password is required to be at least 4 characters.
             </small>
 
-            <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
+            <small *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength" class="form-text text-danger">
               Your confirmation password cannot be longer than 50 characters.
             </small>
           </div>
         </div>
 
-        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">Register</button>
+        <button [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit" type="submit">Register</button>
       </form>
 
       <div class="mt-3 alert alert-warning">

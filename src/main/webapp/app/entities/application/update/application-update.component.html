@@ -1,41 +1,41 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-application-heading" data-cy="ApplicationCreateUpdateHeading">Create or edit a Application</h2>
+    <form (ngSubmit)="save()" [formGroup]="editForm" name="editForm" novalidate role="form">
+      <h2 data-cy="ApplicationCreateUpdateHeading" id="jhi-application-heading">Create or edit a Application</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div *ngIf="editForm.controls.id.value !== null" class="row mb-3">
           <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input [readonly]="true" class="form-control" data-cy="id" formControlName="id" id="field_id" name="id" type="number" />
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <input class="form-control" data-cy="name" formControlName="name" id="field_name" name="name" type="text" />
           <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('name')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_code">Code</label>
-          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <input class="form-control" data-cy="code" formControlName="code" id="field_code" name="code" type="text" />
           <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('code')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_description">Description</label>
           <input
-            type="text"
             class="form-control"
-            name="description"
-            id="field_description"
             data-cy="description"
             formControlName="description"
+            id="field_description"
+            name="description"
+            type="text"
           />
         </div>
 
@@ -43,11 +43,11 @@
           <label for="field_alert_response_codes">Alert Response Codes</label>
           <select
             class="form-control"
-            multiple
-            name="alert_response_codes"
-            id="field_alert_response_codes"
             data-cy="alert_response_codes"
             formControlName="alert_response_codes"
+            id="field_alert_response_codes"
+            multiple
+            name="alert_response_codes"
           >
             <option *ngFor="let code of alertResponseCodes" [value]="code.value">{{ code.value }} - {{ code.name }}</option>
           </select>
@@ -56,15 +56,15 @@
         <div class="row mb-3">
           <label class="form-label" for="field_organization">Organization</label>
           <select
-            class="form-control"
-            id="field_organization"
-            data-cy="organization"
-            name="organization"
-            formControlName="organization"
             [compareWith]="compareOrganization"
+            class="form-control"
+            data-cy="organization"
+            formControlName="organization"
+            id="field_organization"
+            name="organization"
           >
             <option *ngIf="!editForm.get('organization')!.value" [ngValue]="null" selected></option>
-            <option [ngValue]="organizationOption" *ngFor="let organizationOption of organizationsSharedCollection">
+            <option *ngFor="let organizationOption of organizationsSharedCollection" [ngValue]="organizationOption">
               {{ organizationOption.code }}
             </option>
           </select>
@@ -74,21 +74,21 @@
             editForm.get(['organization'])!.invalid && (editForm.get(['organization'])!.dirty || editForm.get(['organization'])!.touched)
           "
         >
-          <small class="form-text text-danger" *ngIf="editForm.get(['organization'])?.errors?.required"> This field is required. </small>
+          <small *ngIf="editForm.get(['organization'])?.errors?.required" class="form-text text-danger"> This field is required. </small>
         </div>
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button (click)="previousState()" class="btn btn-secondary" data-cy="entityCreateCancelButton" id="cancel-save" type="button">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
         <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          data-cy="entityCreateSaveButton"
+          id="save-entity"
+          type="submit"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>

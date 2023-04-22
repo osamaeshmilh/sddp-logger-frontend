@@ -1,14 +1,15 @@
 <div>
   <h2>
-    <span id="user-management-page-heading" data-cy="userManagementPageHeading">Users</span>
+    <span data-cy="userManagementPageHeading" id="user-management-page-heading">Users</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <button (click)="loadAll()" [disabled]="isLoading" class="btn btn-info me-2">
+        <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
-      <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
-        <fa-icon icon="plus"></fa-icon> <span>Create a new user</span>
+      <button [routerLink]="['./new']" class="btn btn-primary jh-create-entity">
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new user</span>
       </button>
     </div>
   </h2>
@@ -17,30 +18,30 @@
 
   <jhi-alert></jhi-alert>
 
-  <div class="table-responsive" *ngIf="users">
-    <table class="table table-striped" aria-describedby="user-management-page-heading">
+  <div *ngIf="users" class="table-responsive">
+    <table aria-describedby="user-management-page-heading" class="table table-striped">
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="id">
+        <tr (sortChange)="transition()" [(ascending)]="ascending" [(predicate)]="predicate" jhiSort>
+          <th jhiSortBy="id" scope="col">
             <span>ID</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="email">
+          <th jhiSortBy="email" scope="col">
             <span>Email</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="first_name">
+          <th jhiSortBy="first_name" scope="col">
             <span>Name</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <!--          <th scope="col"></th>-->
           <th scope="col"><span>Profiles</span></th>
-          <th scope="col" jhiSortBy="created_at">
+          <th jhiSortBy="created_at" scope="col">
             <span>Created date</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <!--          <th scope="col" jhiSortBy="lastModifiedBy"><span>Modified by</span> <fa-icon icon="sort"></fa-icon></th>-->
-          <th scope="col" jhiSortBy="updated_at">
+          <th jhiSortBy="updated_at" scope="col">
             <span>Modified date</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
@@ -65,17 +66,17 @@
           <td>{{ user.updated_at | date: 'dd/MM/yy HH:mm' }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['./', user.id, 'view']" class="btn btn-info btn-sm">
+              <button [routerLink]="['./', user.id, 'view']" class="btn btn-info btn-sm" type="submit">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['./', user.id, 'edit']" queryParamsHandling="merge" class="btn btn-primary btn-sm">
+              <button [routerLink]="['./', user.id, 'edit']" class="btn btn-primary btn-sm" queryParamsHandling="merge" type="submit">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
 
-              <button type="button" (click)="deleteUser(user)" class="btn btn-danger btn-sm" [disabled]="!currentAccount">
+              <button (click)="deleteUser(user)" [disabled]="!currentAccount" class="btn btn-danger btn-sm" type="button">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
@@ -93,13 +94,13 @@
 
     <div class="d-flex justify-content-center">
       <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="page"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
         (pageChange)="transition()"
+        [(page)]="page"
+        [boundaryLinks]="true"
+        [collectionSize]="totalItems"
+        [maxSize]="5"
+        [pageSize]="itemsPerPage"
+        [rotate]="true"
       ></ngb-pagination>
     </div>
   </div>

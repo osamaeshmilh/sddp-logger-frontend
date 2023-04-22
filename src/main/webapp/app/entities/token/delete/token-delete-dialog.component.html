@@ -1,8 +1,8 @@
-<form *ngIf="token" name="deleteForm" (ngSubmit)="confirmDelete(token.id!)">
+<form (ngSubmit)="confirmDelete(token.id!)" *ngIf="token" name="deleteForm">
   <div class="modal-header">
     <h4 class="modal-title" data-cy="tokenDeleteDialogHeading">Confirm delete operation</h4>
 
-    <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    <button (click)="cancel()" aria-hidden="true" class="btn-close" data-dismiss="modal" type="button">&times;</button>
   </div>
 
   <div class="modal-body">
@@ -11,11 +11,11 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+    <button (click)="cancel()" class="btn btn-secondary" data-dismiss="modal" type="button">
       <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
     </button>
 
-    <button id="jhi-confirm-delete-token" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+    <button class="btn btn-danger" data-cy="entityConfirmDeleteButton" id="jhi-confirm-delete-token" type="submit">
       <fa-icon icon="times"></fa-icon>&nbsp;<span>Delete</span>
     </button>
   </div>

@@ -5,11 +5,11 @@
         <p>HTTP Logs by Method</p>
         <div style="display: block">
           <canvas
-            baseChart
-            chartType="doughnut"
             [colors]="pieChartColors"
             [data]="httpLogsByMethodData"
             [labels]="httpLogsByMethodLabels"
+            baseChart
+            chartType="doughnut"
           ></canvas>
         </div>
       </div>

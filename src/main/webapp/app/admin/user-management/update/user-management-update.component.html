@@ -1,20 +1,20 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <form (ngSubmit)="save()" [formGroup]="editForm" name="editForm" novalidate role="form">
       <h2 id="myUserLabel">Create or edit a user</h2>
 
       <jhi-alert-error></jhi-alert-error>
 
-      <div class="mb-3" [hidden]="!editForm.value.id">
+      <div [hidden]="!editForm.value.id" class="mb-3">
         <label>ID</label>
-        <input type="text" class="form-control" name="id" formControlName="id" readonly />
+        <input class="form-control" formControlName="id" name="id" readonly type="text" />
       </div>
       <div class="mb-3">
         <label class="form-label">First name</label>
-        <input type="text" class="form-control" name="first_name" formControlName="first_name" />
+        <input class="form-control" formControlName="first_name" name="first_name" type="text" />
 
         <div *ngIf="editForm.get('first_name')!.invalid && (editForm.get('first_name')!.dirty || editForm.get('first_name')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('first_name')?.errors?.maxlength">
+          <small *ngIf="editForm.get('first_name')?.errors?.maxlength" class="form-text text-danger">
             This field cannot be longer than 50 characters.
           </small>
         </div>
@@ -22,10 +22,10 @@
 
       <div class="mb-3">
         <label>Last name</label>
-        <input type="text" class="form-control" name="last_name" formControlName="last_name" />
+        <input class="form-control" formControlName="last_name" name="last_name" type="text" />
 
         <div *ngIf="editForm.get('last_name')!.invalid && (editForm.get('last_name')!.dirty || editForm.get('last_name')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('last_name')?.errors?.maxlength">
+          <small *ngIf="editForm.get('last_name')?.errors?.maxlength" class="form-text text-danger">
             This field cannot be longer than 50 characters.
           </small>
         </div>
@@ -33,20 +33,20 @@
 
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" formControlName="email" />
+        <input class="form-control" formControlName="email" name="email" type="email" />
 
         <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+          <small *ngIf="editForm.get('email')?.errors?.required" class="form-text text-danger"> This field is required. </small>
 
-          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.maxlength">
+          <small *ngIf="editForm.get('email')?.errors?.maxlength" class="form-text text-danger">
             This field cannot be longer than 100 characters.
           </small>
 
-          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.minlength">
+          <small *ngIf="editForm.get('email')?.errors?.minlength" class="form-text text-danger">
             This field is required to be at least 5 characters.
           </small>
 
-          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Your email is invalid. </small>
+          <small *ngIf="editForm.get('email')?.errors?.email" class="form-text text-danger"> Your email is invalid. </small>
         </div>
       </div>
 
@@ -66,15 +66,15 @@
 
       <div class="mb-3">
         <label>Profiles</label>
-        <select class="form-control" multiple name="authority" formControlName="authorities">
+        <select class="form-control" formControlName="authorities" multiple name="authority">
           <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
         </select>
       </div>
-      <button type="button" class="btn btn-secondary" (click)="previousState()">
+      <button (click)="previousState()" class="btn btn-secondary" type="button">
         <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
       </button>
 
-      <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+      <button [disabled]="editForm.invalid || isSaving" class="btn btn-primary" type="submit">
         <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
       </button>
     </form>

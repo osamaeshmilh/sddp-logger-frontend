@@ -10,6 +10,25 @@ export class PasswordStrengthBarComponent {
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
+  @Input()
+  set passwordToCheck(password: string) {
+    if (password) {
+      const c = this.getColor(this.measureStrength(password));
+      const element = this.elementRef.nativeElement;
+      if (element.className) {
+        this.renderer.removeClass(element, element.className);
+      }
+      const lis = element.getElementsByTagName('li');
+      for (let i = 0; i < lis.length; i++) {
+        if (i < c.idx) {
+          this.renderer.setStyle(lis[i], 'backgroundColor', c.color);
+        } else {
+          this.renderer.setStyle(lis[i], 'backgroundColor', '#DDD');
+        }
+      }
+    }
+  }
+
   measureStrength(p: string): number {
     let force = 0;
     const regex = /[$-/:-?{-~!"^_`[\]]/g; // "
@@ -49,24 +68,5 @@ export class PasswordStrengthBarComponent {
       }
     }
     return { idx: idx + 1, color: this.colors[idx] };
-  }
-
-  @Input()
-  set passwordToCheck(password: string) {
-    if (password) {
-      const c = this.getColor(this.measureStrength(password));
-      const element = this.elementRef.nativeElement;
-      if (element.className) {
-        this.renderer.removeClass(element, element.className);
-      }
-      const lis = element.getElementsByTagName('li');
-      for (let i = 0; i < lis.length; i++) {
-        if (i < c.idx) {
-          this.renderer.setStyle(lis[i], 'backgroundColor', c.color);
-        } else {
-          this.renderer.setStyle(lis[i], 'backgroundColor', '#DDD');
-        }
-      }
-    }
   }
 }

@@ -1,42 +1,42 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-token-heading" data-cy="TokenCreateUpdateHeading">Create or edit a Token</h2>
+    <form (ngSubmit)="save()" [formGroup]="editForm" name="editForm" novalidate role="form">
+      <h2 data-cy="TokenCreateUpdateHeading" id="jhi-token-heading">Create or edit a Token</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div *ngIf="editForm.controls.id.value !== null" class="row mb-3">
           <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input [readonly]="true" class="form-control" data-cy="id" formControlName="id" id="field_id" name="id" type="number" />
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_access_token">Access Token</label>
           <input
-            type="text"
             class="form-control"
-            name="access_token"
-            id="field_access_token"
             data-cy="access_token"
             formControlName="access_token"
+            id="field_access_token"
+            name="access_token"
+            type="text"
           />
           <div
             *ngIf="editForm.get('access_token')!.invalid && (editForm.get('access_token')!.dirty || editForm.get('access_token')!.touched)"
           >
-            <small class="form-text text-danger" *ngIf="editForm.get('access_token')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('access_token')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_refresh_token">Refresh Token</label>
           <input
-            type="text"
             class="form-control"
-            name="refresh_token"
-            id="field_refresh_token"
             data-cy="refresh_token"
             formControlName="refresh_token"
+            id="field_refresh_token"
+            name="refresh_token"
+            type="text"
           />
         </div>
 
@@ -44,16 +44,16 @@
           <label class="form-label" for="field_expiry_date">Expiry Date</label>
           <div class="input-group">
             <input
-              id="field_expiry_date"
-              data-cy="expiry_date"
-              type="text"
+              #expiry_dateDp="ngbDatepicker"
               class="form-control"
+              data-cy="expiry_date"
+              formControlName="expiry_date"
+              id="field_expiry_date"
               name="expiry_date"
               ngbDatepicker
-              #expiry_dateDp="ngbDatepicker"
-              formControlName="expiry_date"
+              type="text"
             />
-            <button type="button" class="btn btn-secondary" (click)="expiry_dateDp.toggle()">
+            <button (click)="expiry_dateDp.toggle()" class="btn btn-secondary" type="button">
               <fa-icon icon="calendar-alt"></fa-icon>
             </button>
           </div>
@@ -61,24 +61,24 @@
 
         <div class="row mb-3">
           <label class="form-label" for="field_is_active">Is Active</label>
-          <input type="checkbox" class="form-check" name="is_active" id="field_is_active" data-cy="is_active" formControlName="is_active" />
+          <input class="form-check" data-cy="is_active" formControlName="is_active" id="field_is_active" name="is_active" type="checkbox" />
           <div *ngIf="editForm.get('is_active')!.invalid && (editForm.get('is_active')!.dirty || editForm.get('is_active')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('is_active')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('is_active')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_application">Application</label>
           <select
-            class="form-control"
-            id="field_application"
-            data-cy="application"
-            name="application"
-            formControlName="application"
             [compareWith]="compareApplication"
+            class="form-control"
+            data-cy="application"
+            formControlName="application"
+            id="field_application"
+            name="application"
           >
             <option *ngIf="!editForm.get('application')!.value" [ngValue]="null" selected></option>
-            <option [ngValue]="applicationOption" *ngFor="let applicationOption of applicationsSharedCollection">
+            <option *ngFor="let applicationOption of applicationsSharedCollection" [ngValue]="applicationOption">
               {{ applicationOption.code }}
             </option>
           </select>
@@ -86,21 +86,21 @@
         <div
           *ngIf="editForm.get(['application'])!.invalid && (editForm.get(['application'])!.dirty || editForm.get(['application'])!.touched)"
         >
-          <small class="form-text text-danger" *ngIf="editForm.get(['application'])?.errors?.required"> This field is required. </small>
+          <small *ngIf="editForm.get(['application'])?.errors?.required" class="form-text text-danger"> This field is required. </small>
         </div>
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button (click)="previousState()" class="btn btn-secondary" data-cy="entityCreateCancelButton" id="cancel-save" type="button">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
         <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          data-cy="entityCreateSaveButton"
+          id="save-entity"
+          type="submit"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>

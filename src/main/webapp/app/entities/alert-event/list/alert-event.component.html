@@ -1,18 +1,18 @@
 <div>
-  <h2 id="page-heading" data-cy="AlertEventHeading">
+  <h2 data-cy="AlertEventHeading" id="page-heading">
     <span>Alert Events</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <button (click)="load()" [disabled]="isLoading" class="btn btn-info me-2">
+        <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
 
       <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-alert-event"
         [routerLink]="['/alert-event/new']"
+        class="btn btn-primary jh-create-entity create-alert-event"
+        data-cy="entityCreateButton"
+        id="jh-create-entity"
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Alert Event </span>
@@ -26,39 +26,39 @@
 
   <jhi-filter [filters]="filters"></jhi-filter>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="alertEvents?.length === 0">
+  <div *ngIf="alertEvents?.length === 0" class="alert alert-warning" id="no-result">
     <span>No Alert Events found</span>
   </div>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="alertEvents && alertEvents.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+  <div *ngIf="alertEvents && alertEvents.length > 0" class="table-responsive table-entities" id="entities">
+    <table aria-describedby="page-heading" class="table table-striped">
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+        <tr (sortChange)="navigateToWithComponentValues()" [(ascending)]="ascending" [(predicate)]="predicate" jhiSort>
+          <th jhiSortBy="id" scope="col">
             <div class="d-flex">
               <span>ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="code">
+          <th jhiSortBy="code" scope="col">
             <div class="d-flex">
               <span>Code</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="application_code">
+          <th jhiSortBy="application_code" scope="col">
             <div class="d-flex">
               <span>Application Code</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="is_sent">
+          <th jhiSortBy="is_sent" scope="col">
             <div class="d-flex">
               <span>Is Sent</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="alertSubscriber.name">
+          <th jhiSortBy="alertSubscriber.name" scope="col">
             <div class="d-flex">
               <span>Alert Subscriber</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -83,26 +83,26 @@
           <td class="text-end">
             <div class="btn-group">
               <button
-                type="submit"
                 [routerLink]="['/alert-event', alertEvent.id, 'view']"
                 class="btn btn-info btn-sm"
                 data-cy="entityDetailsButton"
+                type="submit"
               >
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
 
               <button
-                type="submit"
                 [routerLink]="['/alert-event', alertEvent.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
+                type="submit"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
 
-              <button type="submit" (click)="delete(alertEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button (click)="delete(alertEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton" type="submit">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
@@ -120,13 +120,13 @@
 
     <div class="d-flex justify-content-center">
       <ngb-pagination
-        [collectionSize]="totalItems"
-        [page]="page"
-        [pageSize]="itemsPerPage"
-        [maxSize]="5"
-        [rotate]="true"
-        [boundaryLinks]="true"
         (pageChange)="navigateToPage($event)"
+        [boundaryLinks]="true"
+        [collectionSize]="totalItems"
+        [maxSize]="5"
+        [pageSize]="itemsPerPage"
+        [page]="page"
+        [rotate]="true"
       ></ngb-pagination>
     </div>
   </div>

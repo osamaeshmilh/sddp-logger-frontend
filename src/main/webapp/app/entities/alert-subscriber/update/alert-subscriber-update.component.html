@@ -1,44 +1,44 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-alert-subscriber-heading" data-cy="AlertSubscriberCreateUpdateHeading">Create or edit a Alert Subscriber</h2>
+    <form (ngSubmit)="save()" [formGroup]="editForm" name="editForm" novalidate role="form">
+      <h2 data-cy="AlertSubscriberCreateUpdateHeading" id="jhi-alert-subscriber-heading">Create or edit a Alert Subscriber</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div *ngIf="editForm.controls.id.value !== null" class="row mb-3">
           <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input [readonly]="true" class="form-control" data-cy="id" formControlName="id" id="field_id" name="id" type="number" />
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <input class="form-control" data-cy="name" formControlName="name" id="field_name" name="name" type="text" />
           <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('name')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <input class="form-control" data-cy="email" formControlName="email" id="field_email" name="email" type="text" />
           <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('email')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label for="field_applications">Application</label>
           <select
+            [compareWith]="compareApplication"
             class="form-control"
-            id="field_applications"
             data-cy="application"
+            formControlName="applications"
+            id="field_applications"
             multiple
             name="applications"
-            formControlName="applications"
-            [compareWith]="compareApplication"
           >
-            <option [ngValue]="applicationOption" *ngFor="let applicationOption of applicationsSharedCollection">
+            <option *ngFor="let applicationOption of applicationsSharedCollection" [ngValue]="applicationOption">
               {{ applicationOption.id }}
             </option>
           </select>
@@ -46,16 +46,16 @@
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button (click)="previousState()" class="btn btn-secondary" data-cy="entityCreateCancelButton" id="cancel-save" type="button">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
         <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          data-cy="entityCreateSaveButton"
+          id="save-entity"
+          type="submit"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>

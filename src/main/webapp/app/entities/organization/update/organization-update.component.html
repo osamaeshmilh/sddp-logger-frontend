@@ -1,60 +1,60 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-organization-heading" data-cy="OrganizationCreateUpdateHeading">Create or edit a Organization</h2>
+    <form (ngSubmit)="save()" [formGroup]="editForm" name="editForm" novalidate role="form">
+      <h2 data-cy="OrganizationCreateUpdateHeading" id="jhi-organization-heading">Create or edit a Organization</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div *ngIf="editForm.controls.id.value !== null" class="row mb-3">
           <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input [readonly]="true" class="form-control" data-cy="id" formControlName="id" id="field_id" name="id" type="number" />
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <input class="form-control" data-cy="name" formControlName="name" id="field_name" name="name" type="text" />
           <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('name')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_code">Code</label>
-          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <input class="form-control" data-cy="code" formControlName="code" id="field_code" name="code" type="text" />
           <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('code')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_address">Address</label>
-          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+          <input class="form-control" data-cy="address" formControlName="address" id="field_address" name="address" type="text" />
           <div *ngIf="editForm.get('address')!.invalid && (editForm.get('address')!.dirty || editForm.get('address')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('address')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('address')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <input class="form-control" data-cy="email" formControlName="email" id="field_email" name="email" type="text" />
           <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+            <small *ngIf="editForm.get('email')?.errors?.required" class="form-text text-danger"> This field is required. </small>
           </div>
         </div>
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button (click)="previousState()" class="btn btn-secondary" data-cy="entityCreateCancelButton" id="cancel-save" type="button">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
         <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          data-cy="entityCreateSaveButton"
+          id="save-entity"
+          type="submit"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>

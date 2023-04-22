@@ -6,23 +6,23 @@
         >]
       </h2>
 
-      <div class="alert alert-success" *ngIf="success">
+      <div *ngIf="success" class="alert alert-success">
         <strong>Settings saved!</strong>
       </div>
 
       <jhi-alert-error></jhi-alert-error>
 
-      <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="settingsForm.value.email" novalidate>
+      <form (ngSubmit)="save()" *ngIf="settingsForm.value.email" [formGroup]="settingsForm" name="form" novalidate role="form">
         <div class="mb-3">
           <label class="form-label" for="first_name">First Name</label>
           <input
-            type="text"
             class="form-control"
+            data-cy="first_name"
+            formControlName="first_name"
             id="first_name"
             name="first_name"
             placeholder="Your first name"
-            formControlName="first_name"
-            data-cy="first_name"
+            type="text"
           />
 
           <div
@@ -30,15 +30,15 @@
               settingsForm.get('first_name')!.invalid && (settingsForm.get('first_name')!.dirty || settingsForm.get('first_name')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="settingsForm.get('first_name')?.errors?.required">
+            <small *ngIf="settingsForm.get('first_name')?.errors?.required" class="form-text text-danger">
               Your first name is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="settingsForm.get('first_name')?.errors?.minlength">
+            <small *ngIf="settingsForm.get('first_name')?.errors?.minlength" class="form-text text-danger">
               Your first name is required to be at least 1 character
             </small>
 
-            <small class="form-text text-danger" *ngIf="settingsForm.get('first_name')?.errors?.maxlength">
+            <small *ngIf="settingsForm.get('first_name')?.errors?.maxlength" class="form-text text-danger">
               Your first name cannot be longer than 50 characters
             </small>
           </div>
@@ -47,13 +47,13 @@
         <div class="mb-3">
           <label class="form-label" for="last_name">Last Name</label>
           <input
-            type="text"
             class="form-control"
+            data-cy="last_name"
+            formControlName="last_name"
             id="last_name"
             name="last_name"
             placeholder="Your last name"
-            formControlName="last_name"
-            data-cy="last_name"
+            type="text"
           />
 
           <div
@@ -61,15 +61,15 @@
               settingsForm.get('last_name')!.invalid && (settingsForm.get('last_name')!.dirty || settingsForm.get('last_name')!.touched)
             "
           >
-            <small class="form-text text-danger" *ngIf="settingsForm.get('last_name')?.errors?.required">
+            <small *ngIf="settingsForm.get('last_name')?.errors?.required" class="form-text text-danger">
               Your last name is required.
             </small>
 
-            <small class="form-text text-danger" *ngIf="settingsForm.get('last_name')?.errors?.minlength">
+            <small *ngIf="settingsForm.get('last_name')?.errors?.minlength" class="form-text text-danger">
               Your last name is required to be at least 1 character
             </small>
 
-            <small class="form-text text-danger" *ngIf="settingsForm.get('last_name')?.errors?.maxlength">
+            <small *ngIf="settingsForm.get('last_name')?.errors?.maxlength" class="form-text text-danger">
               Your last name cannot be longer than 50 characters
             </small>
           </div>
@@ -102,7 +102,7 @@
         <!--          </div>-->
         <!--        </div>-->
 
-        <button type="submit" [disabled]="settingsForm.invalid" class="btn btn-primary" data-cy="submit">Save</button>
+        <button [disabled]="settingsForm.invalid" class="btn btn-primary" data-cy="submit" type="submit">Save</button>
       </form>
     </div>
   </div>
