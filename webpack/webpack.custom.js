@@ -23,7 +23,6 @@ module.exports = async (config, options, targetOptions) => {
       }),
       new WebpackNotifierPlugin({
         title: 'Sddp Logger Frontend',
-        contentImage: path.join(__dirname, 'logo-jhipster.png'),
       })
     );
   }
