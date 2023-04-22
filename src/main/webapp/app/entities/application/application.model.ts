@@ -6,7 +6,7 @@ export interface IApplication {
   name?: string | null;
   code?: string | null;
   description?: string | null;
-  alert_response_codes?: string | null;
+  alert_response_codes?: string[] | null;
   organization_id?: number | null;
   organization?: Pick<IOrganization, 'id' | 'code'> | null;
   alert_subscribers?: Pick<IAlertSubscriber, 'id'>[] | null;

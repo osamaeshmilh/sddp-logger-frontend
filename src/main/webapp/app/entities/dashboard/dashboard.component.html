@@ -4,12 +4,24 @@
       <div class="p-3 round-card col-6">
         <p>HTTP Logs by Method</p>
         <div style="display: block">
-          <canvas baseChart chartType="pie" [data]="httpLogsByMethodData" [labels]="httpLogsByMethodLabels"> </canvas>
+          <canvas
+            baseChart
+            chartType="doughnut"
+            [colors]="pieChartColors"
+            [data]="httpLogsByMethodData"
+            [labels]="httpLogsByMethodLabels"
+          ></canvas>
         </div>
       </div>
       <div class="p-3 round-card col-6">
         <p>HTTP Logs by Status Code</p>
-        <canvas [data]="httpLogsByStatusCodeData" [labels]="httpLogsByStatusCodeLabels" baseChart chartType="pie"></canvas>
+        <canvas
+          [colors]="pieChartColors"
+          [data]="httpLogsByStatusCodeData"
+          [labels]="httpLogsByStatusCodeLabels"
+          baseChart
+          chartType="pie"
+        ></canvas>
       </div>
     </div>
 
@@ -33,7 +45,13 @@
 
       <div class="col-md-6">
         <h4>Alert Events by Application</h4>
-        <canvas [data]="alertEventsByApplicationData" [labels]="alertEventsByApplicationLabels" baseChart chartType="pie"></canvas>
+        <canvas
+          [colors]="pieChartColors"
+          [data]="alertEventsByApplicationData"
+          [labels]="alertEventsByApplicationLabels"
+          baseChart
+          chartType="pie"
+        ></canvas>
       </div>
     </div>
 

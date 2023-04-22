@@ -150,6 +150,7 @@ export class HttpLogComponent implements OnInit {
     const queryObject: any = {
       page: pageToLoad,
       size: this.itemsPerPage,
+      query: this.currentSearch,
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };

@@ -9,6 +9,7 @@ import { IApplication } from '../application.model';
 import { ApplicationService } from '../service/application.service';
 import { IOrganization } from 'app/entities/organization/organization.model';
 import { OrganizationService } from 'app/entities/organization/service/organization.service';
+import { HttpStatusCodeArray, HttpStatusCodeEntry } from '../../enumerations/http-status-code.model';
 
 @Component({
   selector: 'jhi-application-update',
@@ -19,6 +20,7 @@ export class ApplicationUpdateComponent implements OnInit {
   application: IApplication | null = null;
 
   organizationsSharedCollection: IOrganization[] = [];
+  alertResponseCodes: HttpStatusCodeEntry[] = HttpStatusCodeArray;
 
   editForm: ApplicationFormGroup = this.applicationFormService.createApplicationFormGroup();
 

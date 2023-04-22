@@ -12,6 +12,12 @@ export class DashboardComponent {
   httpLogsLast7Days = 0;
   httpLogsLast30Days = 0;
 
+  public pieChartColors: Array<any> = [
+    {
+      backgroundColor: ['#FF6384', '#36A2EB', '#4bb82c', '#eb7536', '#a92f2f', '#FFCE56'],
+    },
+  ];
+
   public httpLogsByMethodLabels: Label[] = [];
   public httpLogsByMethodData: number[] = [];
 

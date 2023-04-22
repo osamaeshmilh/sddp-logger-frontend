@@ -69,4 +69,8 @@ export enum HttpStatusCode {
   NETWORK_AUTHENTICATION_REQUIRED = 511,
 }
 
-export const HttpStatusCodeArray = Object.keys(HttpStatusCode).filter(key => isNaN(Number(key))) as string[];
+export const HttpStatusCodeArray = Object.keys(HttpStatusCode)
+  .filter(key => isNaN(Number(key)))
+  .map(key => ({ name: key, value: HttpStatusCode[key as keyof typeof HttpStatusCode] }));
+
+export type HttpStatusCodeEntry = typeof HttpStatusCodeArray[number];
