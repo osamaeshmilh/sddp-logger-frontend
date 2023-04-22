@@ -54,12 +54,7 @@
           </td>
           <td>{{ user.email }}</td>
           <td>{{ user.first_name }}</td>
-          <td>
-            <!--            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated">Deactivated</button>-->
-            <!--            <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated" [disabled]="!currentAccount">-->
-            <!--              Activated-->
-            <!--            </button>-->
-          </td>
+
           <td>
             <div *ngFor="let authority of user.authorities">
               <span class="badge bg-info">{{ authority }}</span>
