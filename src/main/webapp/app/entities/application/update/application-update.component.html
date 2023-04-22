@@ -53,29 +53,6 @@
           </select>
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_organization">Organization</label>
-          <select
-            [compareWith]="compareOrganization"
-            class="form-control"
-            data-cy="organization"
-            formControlName="organization"
-            id="field_organization"
-            name="organization"
-          >
-            <option *ngIf="!editForm.get('organization')!.value" [ngValue]="null" selected></option>
-            <option *ngFor="let organizationOption of organizationsSharedCollection" [ngValue]="organizationOption">
-              {{ organizationOption.code }}
-            </option>
-          </select>
-        </div>
-        <div
-          *ngIf="
-            editForm.get(['organization'])!.invalid && (editForm.get(['organization'])!.dirty || editForm.get(['organization'])!.touched)
-          "
-        >
-          <small *ngIf="editForm.get(['organization'])?.errors?.required" class="form-text text-danger"> This field is required. </small>
-        </div>
       </div>
 
       <div>

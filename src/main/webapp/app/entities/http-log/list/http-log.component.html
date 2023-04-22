@@ -7,17 +7,6 @@
         <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
-
-      <button
-        *jhiHasAnyAuthority="['ROLE_ADMIN']"
-        [routerLink]="['/http-log/new']"
-        class="btn btn-primary jh-create-entity create-http-log"
-        data-cy="entityCreateButton"
-        id="jh-create-entity"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Http Log </span>
-      </button>
     </div>
   </h2>
 
@@ -157,6 +146,7 @@
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
+<<<<<<< HEAD
 
               <!--              <button-->
               <!--                *jhiHasAnyAuthority="['ROLE_ADMIN']"-->
@@ -179,6 +169,8 @@
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
+=======
+>>>>>>> 77c09fa (Minor code changes)
             </div>
           </td>
         </tr>

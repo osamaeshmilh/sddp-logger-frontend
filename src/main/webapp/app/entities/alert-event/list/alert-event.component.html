@@ -7,6 +7,7 @@
         <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
+<<<<<<< HEAD
 
       <button
         [routerLink]="['/alert-event/new']"
@@ -17,6 +18,8 @@
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Alert Event </span>
       </button>
+=======
+>>>>>>> 77c09fa (Minor code changes)
     </div>
   </h2>
 
@@ -90,21 +93,6 @@
               >
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button
-                [routerLink]="['/alert-event', alertEvent.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-                type="submit"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button (click)="delete(alertEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton" type="submit">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>
           </td>
