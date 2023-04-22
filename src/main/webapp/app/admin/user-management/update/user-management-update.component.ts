@@ -41,7 +41,9 @@ export class UserManagementUpdateComponent implements OnInit {
         this.editForm.reset(newUser);
       }
     });
-    this.userService.authorities().subscribe(authorities => (this.authorities = authorities));
+    this.userService.authorities().subscribe(authorities => {
+      this.authorities = authorities.filter(authority => authority !== 'ROLE_ADMIN' && authority !== 'ROLE_USER');
+    });
   }
 
   previousState(): void {
@@ -51,6 +53,10 @@ export class UserManagementUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const user = this.editForm.getRawValue();
+    if (!user.authorities?.includes('ROLE_USER')) {
+      user.authorities?.push('ROLE_USER');
+    }
+
     if (user.id !== null) {
       this.userService.update(user).subscribe({
         next: () => this.onSaveSuccess(),
