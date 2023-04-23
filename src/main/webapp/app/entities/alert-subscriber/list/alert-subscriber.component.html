@@ -52,6 +52,11 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span>Applications</span>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -62,6 +67,7 @@
           </td>
           <td>{{ alertSubscriber.name }}</td>
           <td>{{ alertSubscriber.email }}</td>
+          <td>{{ alertSubscriber.applications }}</td>
           <td class="text-end">
             <div class="btn-group">
               <div class="d-inline-block" ngbDropdown>

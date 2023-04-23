@@ -31,6 +31,7 @@ export class HttpLogComponent implements OnInit {
   currentSearch = '';
   startDate = '';
   endDate = '';
+  httpMethod = '';
 
   httpMethodValues = Object.keys(HttpMethod);
 
@@ -96,6 +97,7 @@ export class HttpLogComponent implements OnInit {
     }
     this.page = 0;
     this.currentSearch = query;
+    console.log(this.httpMethod);
     this.navigateToWithComponentValues();
   }
 
@@ -150,6 +152,9 @@ export class HttpLogComponent implements OnInit {
     const queryObject: any = {
       page: pageToLoad,
       size: this.itemsPerPage,
+      'q[http_method_eq]': this.httpMethod,
+      'q[request_timestamp_gteq]': this.startDate,
+      'q[request_timestamp_lteq]': this.endDate,
       query: this.currentSearch,
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),

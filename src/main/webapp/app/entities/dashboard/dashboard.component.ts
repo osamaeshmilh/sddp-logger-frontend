@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 import { Label } from 'ng2-charts';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'jhi-dashboard',
