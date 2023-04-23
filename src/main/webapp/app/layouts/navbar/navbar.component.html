@@ -105,6 +105,18 @@
                 <span>Alert Subscriber</span>
               </a>
             </li>
+            <li *jhiHasAnyAuthority="['ROLE_ORGANIZATION_ADMIN', 'ROLE_ADMIN']">
+              <a
+                (click)="collapseNavbar()"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="dropdown-item"
+                routerLink="alert-event"
+                routerLinkActive="active"
+              >
+                <fa-icon [fixedWidth]="true" icon="asterisk"></fa-icon>
+                <span>Alert Events</span>
+              </a>
+            </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
