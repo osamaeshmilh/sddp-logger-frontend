@@ -26,13 +26,13 @@ export class DashboardComponent {
   public httpLogsByStatusCodeData: number[] = [];
 
   public httpLogsByApplicationLabels: Label[] = [];
-  public httpLogsByApplicationData: number[] = [];
+  public httpLogsByApplicationData: Array<any> = [];
 
   public httpLogsByOrganizationLabels: Label[] = [];
-  public httpLogsByOrganizationData: number[] = [];
+  public httpLogsByOrganizationData: Array<any> = [];
 
   public alertEventsOverTimeLabels: Label[] = [];
-  public alertEventsOverTimeData: number[] = [];
+  public alertEventsOverTimeData: Array<any> = [];
 
   public alertEventsByApplicationLabels: Label[] = [];
   public alertEventsByApplicationData: number[] = [];
@@ -77,21 +77,36 @@ export class DashboardComponent {
 
   fetchHttpLogsByApplication(): void {
     this.dashboardService.httpLogsByApplication().subscribe(data => {
-      this.httpLogsByApplicationData = Object.values(data);
+      this.httpLogsByApplicationData = [
+        {
+          data: Object.values(data),
+          label: 'Logs by Application',
+        },
+      ];
       this.httpLogsByApplicationLabels = Object.keys(data);
     });
   }
 
   fetchHttpLogsByOrganization(): void {
     this.dashboardService.httpLogsByOrganization().subscribe(data => {
-      this.httpLogsByOrganizationData = Object.values(data);
+      this.httpLogsByOrganizationData = [
+        {
+          data: Object.values(data),
+          label: 'Logs by Organization',
+        },
+      ];
       this.httpLogsByOrganizationLabels = Object.keys(data);
     });
   }
 
   fetchAlertEventsOverTime(): void {
     this.dashboardService.alertEventsOverTime().subscribe(data => {
-      this.alertEventsOverTimeData = Object.values(data);
+      this.alertEventsOverTimeData = [
+        {
+          data: Object.values(data),
+          label: 'Events',
+        },
+      ];
       this.alertEventsOverTimeLabels = Object.keys(data);
     });
   }
