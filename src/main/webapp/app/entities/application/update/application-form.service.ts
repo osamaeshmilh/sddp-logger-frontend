@@ -51,9 +51,7 @@ export class ApplicationFormService {
       }),
       description: new FormControl(applicationRawValue.code),
       alert_response_codes: new FormControl(applicationRawValue.alert_response_codes ?? []),
-      organization: new FormControl(applicationRawValue.organization, {
-        validators: [Validators.required],
-      }),
+      organization: new FormControl(applicationRawValue.organization),
       alert_subscribers: new FormControl(applicationRawValue.alert_subscribers ?? []),
     });
   }
