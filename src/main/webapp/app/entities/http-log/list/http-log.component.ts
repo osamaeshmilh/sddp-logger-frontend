@@ -111,6 +111,10 @@ export class HttpLogComponent implements OnInit {
     });
   }
 
+  exportCsv(): void {
+    window.open('/api/http-logs/export_csv', '_blank');
+  }
+
   protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
     return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
       tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),

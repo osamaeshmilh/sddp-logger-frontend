@@ -7,6 +7,9 @@
         <fa-icon [spin]="isLoading" icon="sync"></fa-icon>
         <span>Refresh list</span>
       </button>
+      <button *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="exportCsv()" [disabled]="isLoading" class="btn btn-info me-2">
+        <span>Export CSV</span>
+      </button>
     </div>
   </h2>
 
